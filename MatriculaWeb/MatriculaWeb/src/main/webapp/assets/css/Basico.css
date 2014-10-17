@@ -1,0 +1,29 @@
+#Contenedor{
+        background-color:black;
+        //border:2px solid #FF0000;
+}
+#Cabecera{
+        background-color:#E5BC7A;
+        height:30%;
+}
+/*#menu{
+        height:10%;
+        background-color:#C8CACC;
+}*/
+#MenusLaterales{
+        height:50%;
+        background-color:#BDD2EF;
+        float:left;
+        width:20%;
+}
+#ContenidoCentral{
+        height:50%;
+        background-color:#DAF7E2;
+        float:right;
+        width:80%;
+}
+#pie{
+        height:20%;
+        background-color:#D3D1C1;
+        clear:both;
+}
