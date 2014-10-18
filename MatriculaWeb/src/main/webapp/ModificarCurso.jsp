@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="pe.com.core.dao.CursoDAO"%>
+<%@page import="pe.com.core.model.Curso"%>
+<%@page import="java.util.List"%>
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,6 +27,7 @@
                             <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Creditos</th>
+                            <th>Modificar</th>
                         </tr>
                     </thead>
                     <%
@@ -37,6 +43,7 @@
                             <td><%= C.getCodigo()%></td>
                             <td><%= C.getNombre()%></td>
                             <td><%= C.getCreditos()%></td>
+                            <td><a href="ModificarCurso2.jsp?C=<%=C.getIdCurso()%>"><i class="icon-edit"></i></a></td>
                         </tr>                    
                     <%
                         }

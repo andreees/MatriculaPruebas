@@ -1,9 +1,12 @@
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="pe.com.core.dao.CursoDAO"%>
+<%@page import="pe.com.core.model.Curso"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cursos - Crear</title>
+        <title>Cursos - Modificar</title>
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
@@ -12,22 +15,27 @@
     <body>
         <%
             boolean Exito=Boolean.parseBoolean(request.getParameter("eee"));
+            int C=Integer.parseInt(request.getParameter("C"));
+            Curso curso;
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+            curso= cursoDAO.get(C);
         %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Crear Curso</h3><br>
+                <h3 id="MensajeBienvenida">Modificar Curso</h3><br>
                 <div style="padding-left: 20%">
                     
-                    <form name="formCrearCurso" action="CrearCursoS" method="POST">
+                    <form name="formCrearCurso" action="ModificarCursoS" method="POST">
                         <table style="width: 40%">
                             <tr>
                                 <td>
                                     <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtNombre" type="text" />
+                                    <input name="txtNombre" type="text" value="<%=curso.getNombre()%>" />
                                 </td>
                             </tr>
                             <tr>
@@ -35,7 +43,7 @@
                                     <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCodigo" type="text" />
+                                    <input name="txtCodigo" type="text" value="<%=curso.getCodigo()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -43,7 +51,7 @@
                                     <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(1-4)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCreditos" type="text" />
+                                    <input name="txtCreditos" type="text" value="<%=curso.getCreditos()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -51,7 +59,7 @@
                                     <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtRequisitos" type="text" />
+                                    <input name="txtRequisitos" type="text" value="<%=curso.getRequisitos()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -59,12 +67,12 @@
                                     <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCiclo" type="text" />
+                                    <input name="txtCiclo" type="text" value="<%=curso.getCiclo()%>"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Crear Curso" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Modificar Curso" /></td>
                             </tr>
                         </table>
                     </form>
@@ -72,7 +80,7 @@
                     {
                     %>
                         <!-- Success -->
-                        <div class="notice success"><i class="icon-ok icon-large"></i> Curso Creado Correctamente! 
+                        <div class="notice success"><i class="icon-ok icon-large"></i> Curso Modificado Correctamente! 
                         <a href="#close" class="icon-remove"></a></div>
                     <%
                     }
