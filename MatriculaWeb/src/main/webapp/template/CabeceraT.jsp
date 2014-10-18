@@ -4,7 +4,7 @@
     <body>
         <div id="Cabecera">
                 <img src="assets/imagenes/logoUPC.png" width="50" height="50" alt="logoUPC"/>
-                <label>ADMINISTRACIÓN</label>
+                <label><a href="PrincipalAdministrador.jsp" style="text-decoration: none">ADMINISTRACIÓN</a></label>
                 <label id="lblUsuario"></label>
                 <input type="submit" value="Cerrar Sesion" name="btnCerrarSesion" />
         </div>
