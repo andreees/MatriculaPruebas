@@ -33,8 +33,8 @@
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		        List<Curso> ListaDeCursos = new ArrayList<Curso>();
-                        CursoDAO cDAO= context.getBean(CursoDAO.class);
-                        ListaDeCursos=cDAO.list();
+                        CursoDAO cursoDAO= context.getBean(CursoDAO.class);
+                        ListaDeCursos=cursoDAO.list();
                         for(Curso C: ListaDeCursos)
                         {
                     %>
