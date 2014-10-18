@@ -12,7 +12,7 @@
                             <li><a href="ListarCurso.jsp">Listar Cursos</a></li>
                             <li><a href="CrearCurso.jsp">Crear Curso</a></li>
                             <li><a href="ModificarCurso.jsp">Modificar Curso</a></li>
-                            <li><a href="">Eliminar Curso</a></li>
+                            <li><a href="EliminarCurso.jsp">EliminarCurso</a></li>
                         </ul>
                     </li>
                     <li><a href="">Secciones</a>
