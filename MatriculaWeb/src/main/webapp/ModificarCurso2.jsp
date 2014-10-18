@@ -29,13 +29,14 @@
                 <div style="padding-left: 20%">
                     
                     <form name="formCrearCurso" action="ModificarCursoS" method="POST">
+                        <input name="txtIdCurso" type="text" value="<%=curso.getIdCurso()%>" style="visibility: hidden"/>
                         <table style="width: 40%">
                             <tr>
                                 <td>
                                     <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtNombre" type="text" value="<%=curso.getNombre()%>" />
+                                    <input name="txtNombre" type="text" value="<%=curso.getNombre()%>"/>
                                 </td>
                             </tr>
                             <tr>

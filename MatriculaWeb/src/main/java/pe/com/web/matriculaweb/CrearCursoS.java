@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pe.com.web.matriculaweb;
 
 import java.io.IOException;
@@ -30,7 +25,7 @@ public class CrearCursoS extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                 boolean b=true;
+                boolean b=true;
                 ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		
                 CursoDAO cursoDAO = context.getBean(CursoDAO.class);

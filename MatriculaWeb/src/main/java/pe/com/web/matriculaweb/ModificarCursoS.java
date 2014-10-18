@@ -7,6 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import pe.com.core.dao.*;
+import pe.com.core.model.*;
 
 @WebServlet(name = "ModificarCursoS", urlPatterns = {"/ModificarCursoS"})
 public class ModificarCursoS extends HttpServlet {
@@ -22,19 +26,24 @@ public class ModificarCursoS extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ModificarCursoS</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ModificarCursoS at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        boolean b=false;
+        
+        Curso curso=new Curso();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+        
+        curso.setIdCurso(Integer.parseInt(request.getParameter("txtIdCurso")));
+        curso.setNombre(request.getParameter("txtNombre"));
+        curso.setCodigo(request.getParameter("txtCodigo"));
+        curso.setCreditos(Integer.parseInt(request.getParameter("txtCreditos")));
+        curso.setRequisitos(request.getParameter("txtRequisitos"));
+        curso.setCiclo(Integer.parseInt(request.getParameter("txtCiclo")));
+        
+        if(cursoDAO.update(curso))
+            b=true;
+        
+        response.sendRedirect("ModificarCurso2.jsp?eee="+b+"&C="+curso.getIdCurso());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
