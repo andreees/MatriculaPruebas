@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
     </head>
     <body>
+        <%
+            boolean Exito=Boolean.parseBoolean(request.getParameter("eee"));
+        %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
@@ -65,6 +68,15 @@
                             </tr>
                         </table>
                     </form>
+                    <%if(Exito)
+                    {
+                    %>
+                        <!-- Success -->
+                        <div class="notice success"><i class="icon-ok icon-large"></i> Insertado 
+                        <a href="#close" class="icon-remove"></a></div>
+                    <%
+                    }
+                    %>
                 </div>
             </div>
         </div>

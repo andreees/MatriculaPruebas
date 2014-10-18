@@ -30,7 +30,7 @@ public class CrearCursoS extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               
+                 boolean b=true;
                 ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		
                 CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -44,15 +44,16 @@ public class CrearCursoS extends HttpServlet {
                 
                 try{
                     cursoDAO.save(curso);
+                   
                 }catch(Exception e)
                 {
+                    
                     e.printStackTrace();
                 }
-                
-                response.sendRedirect("ListarCurso.jsp");
+                //response.sendRedirect("iPro.jsp?idCurso="+curso.getIdCurso());
+                response.sendRedirect("CrearCurso.jsp?eee="+b);
         }
         
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
