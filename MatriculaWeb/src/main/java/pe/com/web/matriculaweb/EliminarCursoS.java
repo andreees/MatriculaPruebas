@@ -33,7 +33,7 @@ public class EliminarCursoS extends HttpServlet {
         curso=cursoDAO.get(codigo);
         
         cursoDAO.delete(curso);
-        response.sendRedirect("ListarCurso.jsp");
+        response.sendRedirect("EliminarCurso.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
