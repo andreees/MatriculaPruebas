@@ -1,12 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <body>
-        <div id="Cabecera">
-                <img src="assets/imagenes/logoUPC.png" width="50" height="50" alt="logoUPC"/>
-                <label><a href="PrincipalAdministrador.jsp" style="text-decoration: none">ADMINISTRACIÃ“N</a></label>
-                <label id="lblUsuario"></label>
-                <input type="submit" value="Cerrar Sesion" name="btnCerrarSesion" />
-        </div>
-    </body>
-</html>
+<div id="Cabecera">
+    <img src="assets/imagenes/logoUPC.png" width="50" height="50" alt="logoUPC"/><a href="PrincipalAdministrador.jsp" style="text-decoration: none"><label style="font-size: 25px">MATRICULA</label> - <label style="font-size: 20px">ADMINISTRACIÓN</label></a>
+    <input type="submit" value="Cerrar Sesion" name="btnCerrarSesion" style="float: right;margin-top: 13px;"/>
+    <label id="lblUsuario" style="float: right;margin-top: 23px">Bienvenido Eduardo Palomino&nbsp;&nbsp;</label>   
+</div>
