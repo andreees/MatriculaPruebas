@@ -36,16 +36,8 @@ public class CrearCursoS extends HttpServlet {
                 curso.setCreditos(Integer.parseInt(request.getParameter("txtCreditos")));
                 curso.setRequisitos(request.getParameter("txtRequisitos"));
                 curso.setCiclo(Integer.parseInt(request.getParameter("txtCiclo")));
-                
-                try{
-                    cursoDAO.save(curso);
+                cursoDAO.save(curso);
                    
-                }catch(Exception e)
-                {
-                    
-                    e.printStackTrace();
-                }
-                //response.sendRedirect("iPro.jsp?idCurso="+curso.getIdCurso());
                 response.sendRedirect("CrearCurso.jsp?eee="+b);
         }
         

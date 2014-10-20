@@ -1,7 +1,6 @@
 package pe.com.web.matriculaweb;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +39,9 @@ public class ModificarCursoS extends HttpServlet {
         curso.setRequisitos(request.getParameter("txtRequisitos"));
         curso.setCiclo(Integer.parseInt(request.getParameter("txtCiclo")));
         
-        if(cursoDAO.update(curso))
+        if(cursoDAO.update(curso)){
             b=true;
+        }
         
         response.sendRedirect("ModificarCurso2.jsp?eee="+b+"&C="+curso.getIdCurso());
     }
