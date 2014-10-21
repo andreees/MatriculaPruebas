@@ -30,45 +30,45 @@
                     
                     <form name="formCrearCurso" action="ModificarCursoS" method="POST">
                         <input name="txtIdCurso" type="text" value="<%=curso.getIdCurso()%>" style="visibility: hidden"/>
-                        <table style="width: 40%">
+                        <table style="width: 60%">
                             <tr>
                                 <td>
-                                    <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
+                                    <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: Lenguaje1)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtNombre" type="text" value="<%=curso.getNombre()%>"/>
+                                    <input name="txtNombre" type="text" required="" value="<%=curso.getNombre()%>"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
+                                    <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU23)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCodigo" type="text" value="<%=curso.getCodigo()%>"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(1-4)</span></label>
-                                </td>
-                                <td>
-                                    <input name="txtCreditos" type="text" value="<%=curso.getCreditos()%>"/>
+                                    <input name="txtCodigo" type="text" required="" value="<%=curso.getCodigo()%>"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
+                                    <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 3)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtRequisitos" type="text" value="<%=curso.getRequisitos()%>"/>
+                                    <input name="txtCreditos" type="number" required="" value="<%=curso.getCreditos()%>"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z)</span></label>
+                                    <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU20)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCiclo" type="text" value="<%=curso.getCiclo()%>"/>
+                                    <input name="txtRequisitos" required="" type="text" value="<%=curso.getRequisitos()%>"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 2)</span></label>
+                                </td>
+                                <td>
+                                    <input name="txtCiclo" type="number" required="" value="<%=curso.getCiclo()%>"/>
                                 </td>
                             </tr>
                             <tr>
