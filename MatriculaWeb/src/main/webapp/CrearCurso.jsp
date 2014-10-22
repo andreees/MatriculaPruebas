@@ -27,7 +27,7 @@
                                     <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: Lenguaje1)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtNombre" type="text" />
+                                    <input id="txtNombre" name="txtNombre" required="" type="text" />
                                 </td>
                             </tr>
                             <tr>
@@ -35,7 +35,7 @@
                                     <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU23)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCodigo" type="text" />
+                                    <input id="txtCodigo" name="txtCodigo" required="" type="text" />
                                 </td>
                             </tr>
                             <tr>
@@ -43,7 +43,7 @@
                                     <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 3)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCreditos" type="text" />
+                                    <input id="txtCreditos" name="txtCreditos" required="" type="number" />
                                 </td>
                             </tr>
                             <tr>
@@ -51,7 +51,7 @@
                                     <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU20)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtRequisitos" type="text" />
+                                    <input id="txtRequisitos" name="txtRequisitos" required="" type="text" />
                                 </td>
                             </tr>
                             <tr>
@@ -59,12 +59,12 @@
                                     <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 2)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCiclo" type="text" />
+                                    <input id="txtCiclo" name="txtCiclo" required="" type="number" />
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Crear Curso" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Crear Curso" name="btnCrearCurso" id="btnCrearCurso"/></td>
                             </tr>
                         </table>
                     </form>
