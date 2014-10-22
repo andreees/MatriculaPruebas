@@ -24,4 +24,5 @@ public interface AlumnoDAO {
         
         public Alumno get(int id);
 	
+        public Alumno iniciarSesionAlumno(int codigoUsuario);
 }

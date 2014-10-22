@@ -5,10 +5,12 @@
  */
 
 package pe.com.core.dao;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pe.com.core.model.Alumno;
 /**
@@ -105,5 +107,22 @@ public class AlumnoDAOImp implements AlumnoDAO{
         return alumno;   
     }
     
-    
+    public Alumno iniciarSesionAlumno(int codigoUsuario) {
+        Alumno alumno = null;
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            List<Alumno> listAlumnos = new ArrayList<Alumno>();
+            AlumnoDAO aDAO = context.getBean(AlumnoDAO.class);
+            listAlumnos = aDAO.list();
+            for (Alumno alum : listAlumnos) {
+                if (alum.getIdUsuario() == codigoUsuario) {
+                    alumno = alum;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return alumno;
+    }
 }

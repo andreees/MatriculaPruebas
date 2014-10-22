@@ -23,5 +23,6 @@ public interface AdministradorDAO {
         public boolean delete (Administrador administrador);
         
         public Administrador get(int id);
-	
+
+        public Administrador iniciarSesionAdministrador(int codigoUsuario);
 }

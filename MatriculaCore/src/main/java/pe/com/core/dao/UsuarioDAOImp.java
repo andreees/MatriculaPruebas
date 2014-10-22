@@ -3,26 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pe.com.core.dao;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pe.com.core.model.Usuario;
+
 /**
  *
  * @author zcrome
  */
-public class UsuarioDAOImp implements UsuarioDAO{
+public class UsuarioDAOImp implements UsuarioDAO {
 
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
+
     public void save(Usuario usuario) {
         try {
             Session session = this.sessionFactory.openSession();
@@ -30,7 +33,7 @@ public class UsuarioDAOImp implements UsuarioDAO{
             session.persist(usuario);
             tx.commit();
             session.close();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,16 +41,15 @@ public class UsuarioDAOImp implements UsuarioDAO{
 
     public List<Usuario> list() {
         List<Usuario> lista = null;
-        
+
         try {
-          Session session = this.sessionFactory.openSession();
-          lista = session.createQuery("from Usuario").list();
-          session.close();
-          
-            
+            Session session = this.sessionFactory.openSession();
+            lista = session.createQuery("from Usuario").list();
+            session.close();
+
         } catch (Exception e) {
-          }
-	return lista;
+        }
+        return lista;
     }
 
     public boolean update(Usuario usuario) {
@@ -57,13 +59,13 @@ public class UsuarioDAOImp implements UsuarioDAO{
             session.update(usuario);
             tx.commit();
             session.close();
-            
+
         } catch (Exception e) {
-            
+
             e.printStackTrace();
             return false;
         }
-        
+
         return true;
     }
 
@@ -74,37 +76,52 @@ public class UsuarioDAOImp implements UsuarioDAO{
             session.delete(usuario);
             tx.commit();
             session.close();
-            
+
         } catch (Exception e) {
-            
+
             e.printStackTrace();
             return false;
         }
-        
+
         return true;
     }
 
     public Usuario get(int id) {
         Usuario usuario = null;
-        
+
         try {
-            
-            
-            
+
             Session session = this.sessionFactory.openSession();
             Transaction tx = session.beginTransaction();
-            usuario = (Usuario)session.get(Usuario.class, id);
+            usuario = (Usuario) session.get(Usuario.class, id);
             tx.commit();
             session.close();
-            
+
         } catch (Exception e) {
-            
+
             e.printStackTrace();
-            
+
         }
-        return usuario;     
+        return usuario;
     }
-    
-    
-    
+
+    public Usuario iniciarSesion(String pUsuario, String pClave) {
+        Usuario usuario = null;
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            List<Usuario> listUsuarios = new ArrayList<Usuario>();
+            UsuarioDAO uDAO = context.getBean(UsuarioDAO.class);
+            listUsuarios = uDAO.list();
+            for (Usuario user : listUsuarios) {
+                if (pUsuario.equals(user.getUsuario()) && pClave.equals(user.getClave())) {
+                    usuario = user;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usuario;
+    }
+
 }
