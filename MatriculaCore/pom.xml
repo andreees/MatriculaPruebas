@@ -81,12 +81,32 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-	 <dependency>
-	  <groupId>junit</groupId>
-	  <artifactId>junit</artifactId>
-	  <version>4.11</version>
-	  <scope>test</scope>
-	  <type>jar</type>
-	 </dependency>
+                <dependency>
+                 <groupId>junit</groupId>
+                 <artifactId>junit</artifactId>
+                 <version>4.11</version>
+                 <scope>test</scope>
+                 <type>jar</type>
+                </dependency>
+                <!-- Libreria de TestNG-->
+               <dependency>
+                   <groupId>org.testng</groupId>
+                   <artifactId>testng</artifactId>
+                   <version>6.1.1</version>
+                   <scope>test</scope>
+               </dependency>
+               <!-- Libreria para leer Excel-->
+               <dependency>
+                   <groupId>org.apache.poi</groupId>
+                   <artifactId>poi</artifactId>
+                   <version>3.10-FINAL</version>
+                   <scope>test</scope>
+               </dependency>
+               <!-- Libreria del Selenium -->
+               <dependency>
+                   <groupId>org.seleniumhq.selenium</groupId>
+                   <artifactId>selenium-java</artifactId>
+                   <version>2.42.2</version>
+               </dependency> 
 	</dependencies>
 </project>
