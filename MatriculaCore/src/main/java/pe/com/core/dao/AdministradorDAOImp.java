@@ -5,10 +5,12 @@
  */
 
 package pe.com.core.dao;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pe.com.core.model.Administrador;
 /**
@@ -105,4 +107,22 @@ public class AdministradorDAOImp implements AdministradorDAO{
         return administrador;   
     }
     
+    public Administrador iniciarSesionAdministrador(int codigoUsuario){
+        Administrador administrador = null;
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            List<Administrador> listAdministradors = new ArrayList<Administrador>();
+            AdministradorDAO aDAO = context.getBean(AdministradorDAO.class);
+            listAdministradors = aDAO.list();
+            for (Administrador admin : listAdministradors) {
+                if (admin.getIdUsuario() == codigoUsuario ) {
+                    administrador = admin;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return administrador;
+    }
 }

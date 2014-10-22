@@ -24,4 +24,5 @@ public interface UsuarioDAO {
         
         public Usuario get(int id);
 	
+        public Usuario iniciarSesion(String pUsuario, String pClave);
 }
