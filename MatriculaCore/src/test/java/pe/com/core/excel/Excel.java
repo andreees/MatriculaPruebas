@@ -15,6 +15,8 @@ public class Excel {
         List<List<String>> lista;
         lista = new ArrayList<List<String>>();
         try{
+            //String direcion = new File(".").getCanonicalPath();
+            //System.out.println(direcion);            
             FileInputStream archivo = new FileInputStream(
                     new File("C:\\ProgramasInstalados\\DatosParaMatricula.xls"));
             //Archivo en excel
