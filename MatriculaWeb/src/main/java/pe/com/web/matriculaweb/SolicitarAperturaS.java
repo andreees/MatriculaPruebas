@@ -6,10 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pe.com.core.dao.*;
 import pe.com.core.model.*;
+import pe.com.web.matriculaweb.bean.UsuarioBean;
+import pe.com.web.matriculaweb.util.ConstantesWeb;
 
 @WebServlet(name = "SolicitarAperturaS", urlPatterns = {"/SolicitarAperturaS"})
 public class SolicitarAperturaS extends HttpServlet {
@@ -40,7 +43,12 @@ public class SolicitarAperturaS extends HttpServlet {
                     SolicitudDAO solicitudDAO = context.getBean(SolicitudDAO.class);
                 
                     Solicitud solicitud=new Solicitud();
-                    solicitud.setIdAlumno(1);
+                    
+                    HttpSession sesion=request.getSession();
+                    
+                    UsuarioBean usuario=(UsuarioBean)sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
+                    
+                    solicitud.setIdAlumno(usuario.getIdAlumno());
                     solicitud.setMotivo(request.getParameter("MotivoApertura"));
                     
                     try{

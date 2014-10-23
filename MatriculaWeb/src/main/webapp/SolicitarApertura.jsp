@@ -1,6 +1,24 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 
+<%@page import="pe.com.core.dao.CursoDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="pe.com.core.model.Curso"%>
+<%@page import="pe.com.core.model.Curso"%>
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<%    
+    UsuarioBean usuarioBean;
+    if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
+        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ALUMNO)) {
+            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
+        }
+    }
+%>
 <html>
     
     <head>
@@ -34,11 +52,19 @@
                                     <label for="CodigoCurso">Curso</label>
                                 </td>
                                 <td>
-                                    <select name="CodigoCurso">
-                                        <option value="34424">Pruebas</option>
-                                        <option value="2">Otro</option>
-                                        <option value="3">Otro2</option>
-                                        <option value="4">Otro3</option>
+                                    <select name="CodigoCurso" required="true">
+                                        <%
+                                            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+                                            List<Curso> listCursos = new ArrayList<Curso>();
+                                            CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+                                            listCursos = cursoDAO.list();
+                                            for (Curso curso : listCursos) {
+                                                %>
+                                                <option value="<%=curso.getIdCurso()%>"><%= curso.getNombre()%></option>
+                                                <%
+                                            }     
+                                        %>
+
                                     </select>
          
                                 </td>
@@ -47,7 +73,7 @@
                                     <label for="MotivoApertura">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
                                 </td>
                                 <td>
-                                    <textarea name="MotivoApertura" rows="6" cols="100"></textarea>
+                                    <textarea name="MotivoApertura" rows="6" cols="100" required="true"></textarea>
                                 </td>
                             </tr>
                             <tr>
