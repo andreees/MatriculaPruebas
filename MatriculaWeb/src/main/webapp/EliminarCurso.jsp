@@ -43,7 +43,7 @@
                             <td><%= C.getCodigo()%></td>
                             <td><%= C.getNombre()%></td>
                             <td><%= C.getCreditos()%></td>
-                            <td><a href="EliminarCursoS?C=<%=C.getIdCurso()%>"><i class="icon-remove"></i></a></td>
+                            <td><a id="linkEliminarCurso" href="EliminarCursoS?C=<%=C.getIdCurso()%>"><i class="icon-remove"></i></a></td>
                         </tr>                    
                     <%
                         }

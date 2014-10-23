@@ -73,7 +73,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Modificar Curso" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="btnModificarCurso" type="submit" value="Modificar Curso" /></td>
                             </tr>
                         </table>
                     </form>
@@ -81,7 +81,7 @@
                     {
                     %>
                         <!-- Success -->
-                        <div class="notice success"><i class="icon-ok icon-large"></i> Curso Modificado Correctamente! 
+                        <div class="notice success"><i class="icon-ok icon-large"></i><label id="lblMensaje">El curso ha sido modificado correctamente.</label> 
                         <a href="#close" class="icon-remove"></a></div>
                     <%
                     }

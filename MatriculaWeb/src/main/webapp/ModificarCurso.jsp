@@ -43,7 +43,7 @@
                             <td><%= C.getCodigo()%></td>
                             <td><%= C.getNombre()%></td>
                             <td><%= C.getCreditos()%></td>
-                            <td><a href="ModificarCurso2.jsp?C=<%=C.getIdCurso()%>"><i class="icon-edit"></i></a></td>
+                            <td><a id="linkModificarCurso" href="ModificarCurso2.jsp?C=<%=C.getIdCurso()%>"><i class="icon-edit"></i></a></td>
                         </tr>                    
                     <%
                         }
