@@ -33,7 +33,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Secciones - Listar</title>
+        <title>Secciones - Crear</title>
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
@@ -48,7 +48,7 @@
                 <p>Ingrese la información de la secci&oacute;n</p>
                 <!-- Table sortable -->
                 <form action="ControllerSeccion" method="post">
-                    <input type="hidden" name="action" value="CrearSeccion">
+                    <input type="hidden" name="action" value="<%= ConstantesWeb.CREAR_SECCION%>">
                     <table class="sortable">
                         <thead>
                             <tr>

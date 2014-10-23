@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CrearSeccion
-    Created on : 20/10/2014, 03:39:26 PM
-    Author     : Roy Taza Rojas
+    Document   : CrearSeccion3
+    Created on : Oct 23, 2014, 2:13:10 PM
+    Author     : proyecto
 --%>
 
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
@@ -12,7 +12,7 @@
 <%@page import="pe.com.core.model.*"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    
+<%
     UsuarioBean usuarioBean;
     if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
         response.sendRedirect("index.jsp");
@@ -39,38 +39,15 @@
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
                 <h3 id="MensajeBienvenida">Crear Seccion</h3><br>
-                <p>Haga clic en el curso que desea crear una secci&oacute;n</p>
-                <!-- Table sortable -->
-                <table class="sortable">
-                    <thead>
-                        <tr>
-                            <th>C&oacute;digo</th>
-                            <th>Curso</th>
-                            <th>Requisitos</th>
-                            <th>Ciclo</th>
-                            <th>Agregar</th>
-                        </tr>
-                    </thead>
-                    <%
-                        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-                        List<Curso> listCursos = new ArrayList<Curso>();
-                        CursoDAO cursoDAO = context.getBean(CursoDAO.class);
-                        listCursos = cursoDAO.list();
-                        for (Curso curso : listCursos) {
-                    %>
-                    <tbody>
-                        <tr>
-                            <td><%= curso.getCodigo()%></td>
-                            <td><%= curso.getNombre()%></td>
-                            <td><%= curso.getRequisitos()%></td>
-                            <td><%= curso.getCiclo()%></td>
-                            <td><a href="#"><img src="#" alt="Agregar"></a></td>
-                        </tr>                    
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
+                <%
+                    if (request.getParameter("mensaje") != null) {
+                        if (request.getParameter("mensaje").equalsIgnoreCase("success")) {
+                %>
+                <p id="mensajeConfirmacion" style="margin-left: 25px">La secci&oacute;n ha sido creada correctamente.</p>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </body>
