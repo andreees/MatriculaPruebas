@@ -42,7 +42,9 @@
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
+                
                 <h6 id="MensajeBienvenida">Seleccione los cursos en los que desea matricularse</h6><br>
+                <form name="formMatricula" action="" method="POST">
                 <table>
                     <% 
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -50,8 +52,8 @@
                         List<Seccion> ListaDeSecciones = new ArrayList<Seccion>();
                         List<Clase> ListaDeClases = new ArrayList<Clase>();
                         CursoDAO cDAO= context.getBean(CursoDAO.class);
-                        SeccionDAO sDAO= context.getBean(SeccionDAO.class);
-                        ClaseDAO ccDAO = context.getBean(ClaseDAO.class);
+                        
+                        
                         ListaDeCursos=cDAO.list();
                         for(Curso C: ListaDeCursos)
                         {
@@ -63,21 +65,41 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <% 
+                        
+                        <%
+                            SeccionDAO sDAO= context.getBean(SeccionDAO.class);
+                            ListaDeSecciones=sDAO.listXIdCurso(C.getIdCurso());
                             for(Seccion S: ListaDeSecciones)
                             {
                             %>
-                            <td><input type="radio" name="<%=C.getCodigo()%>" value="<%=S.getIdSeccion()%>"><%=S.getCodigo()%><br>
-                            <%
+                        <tr>
+                            <td><input type="radio" name="<%=C.getCodigo()%>" value="<%=S.getIdSeccion()%>"><%=S.getCodigo()%> 
+                                (
+                                <%
+                                ClaseDAO ccDAO = context.getBean(ClaseDAO.class);
+                                ListaDeClases=ccDAO.listXIdSeccion(S.getIdSeccion());
+                                for(Clase CC: ListaDeClases)
+                                {
+                                %>
+                                <%=CC.getDia() %> <%=CC.getHoraInicio() %> - <%=CC.getHoraFin()%> : <%=CC.getCodigo()%>&nsbp;&nsbp;&nsbp;  
+                                
+                                
+                                <%
+                                }
+                                %>
+                                <%=S.getProfesor()%>
+                                )<br>
+                        </tr>
+                        <%
                             }
                             %>
-                        </tr>
                     </tbody>
                     <%
                         }
                     %>
                 </table>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Grabar Matricula" />
+            </form>
             </div>
         </div>
     </body>

@@ -18,6 +18,8 @@ public interface SeccionDAO {
 	
 	public List<Seccion> list();
         
+        public List<Seccion> listXIdCurso(int idCurso);
+        
         public boolean update(Seccion seccion);
         
         public boolean delete (Seccion seccion);

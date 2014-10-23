@@ -49,6 +49,20 @@ public class ClaseDAOImp implements ClaseDAO{
           }
 	return lista;
     }
+    
+    public List<Clase> listXIdSeccion(int idSeccion) {
+        List<Clase> lista = null;
+        
+        try {
+          Session session = this.sessionFactory.openSession();
+          lista = session.createQuery("from Clase").list();
+          session.close();
+          
+            
+        } catch (Exception e) {
+          }
+	return lista;
+    }
 
     public boolean update(Clase clase) {
         try {

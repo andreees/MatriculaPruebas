@@ -24,6 +24,9 @@ public class Clase {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idClase;
     
+    private String codigo;
+
+   
     private String dia;
     private int horaInicio;
     private int horaFin;
@@ -33,7 +36,7 @@ public class Clase {
 
     public Clase() {
     }
-
+/*
     public Clase(int idClase, String dia, int horaInicio, int horaFin, String tipoClase, int idCurso, int idSeccion) {
         this.idClase = idClase;
         this.dia = dia;
@@ -43,7 +46,7 @@ public class Clase {
         this.idCurso = idCurso;
         this.idSeccion = idSeccion;
     }
-
+*/
     public int getIdClase() {
         return idClase;
     }
@@ -52,6 +55,14 @@ public class Clase {
         this.idClase = idClase;
     }
 
+     public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public String getDia() {
         return dia;
     }

@@ -26,6 +26,7 @@ public class Seccion {
     private int idSeccion;
 
     private String codigo;
+    
     private String profesor;
     private int idcurso;
 
@@ -79,7 +80,7 @@ public class Seccion {
 
     @Override
     public String toString() {
-        return "idseccion=" + idSeccion + ", codigo=" + codigo;
+        return "idseccion=" + idSeccion + ", codigo=" + codigo+ ", profesor=" + profesor;
     }
 
 }

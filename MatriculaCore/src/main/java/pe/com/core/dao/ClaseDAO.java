@@ -18,6 +18,8 @@ public interface ClaseDAO {
 	
 	public List<Clase> list();
         
+        public List<Clase> listXIdSeccion(int idSeccion);
+        
         public boolean update(Clase clase);
         
         public boolean delete (Clase clase);

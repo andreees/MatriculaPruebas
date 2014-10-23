@@ -55,6 +55,22 @@ public class SeccionDAOImp implements SeccionDAO {
 	return lista;
     }
 
+    public List<Seccion> listXIdCurso(int idCurso) {
+        
+        List<Seccion> lista = null;
+        
+        try {
+          Session session = this.sessionFactory.openSession();
+          lista = session.createQuery("from Seccion").list();
+          session.close();
+          
+            
+        } catch (Exception e) {
+          }
+	return lista;
+    }
+    
+    
     public boolean update(Seccion s) {
         
         try {

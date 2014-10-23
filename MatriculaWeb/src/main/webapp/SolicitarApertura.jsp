@@ -40,12 +40,11 @@
         %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
-            <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
                 <h3 id="MensajeBienvenida">Solicitud de Apertura de Curso</h3><br>
                 <div style="padding-left: 20%">
                     
-                    <form name="formCrearCurso" action="SolicitarAperturaS" method="POST">
+                    <form name="formSolicitarApertura" action="SolicitarAperturaS" method="POST">
                         <table style="width: 40%">
                             <tr>
                                 <td>
