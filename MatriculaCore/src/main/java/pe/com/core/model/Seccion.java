@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pe.com.core.model;
 
 import javax.persistence.Column;
@@ -12,30 +11,36 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /**
  *
  * @author zcrome
  */
 @Entity
-@Table(name="SECCION")
+@Table(name = "SECCION")
 public class Seccion {
-    
-    
+
     @Id
-    @Column(name="idSeccion")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "idSeccion")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idSeccion;
-    
+
     private String codigo;
-    private String profesor;
+    //private String profesor;
 
     public Seccion() {
     }
 
-    public Seccion(int idSeccion, String codigo, String profesor) {
+    /*
+     public Seccion(int idSeccion, String codigo, String profesor) {
+     this.idSeccion = idSeccion;
+     this.codigo = codigo;
+     this.profesor = profesor;
+     }
+     */
+    public Seccion(int idSeccion, String codigo) {
         this.idSeccion = idSeccion;
         this.codigo = codigo;
-        this.profesor = profesor;
     }
 
     public int getIdSeccion() {
@@ -53,20 +58,19 @@ public class Seccion {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
+    /*
+     public String getProfesor() {
+     return profesor;
+     }
 
-    public String getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
+     public void setProfesor(String profesor) {
+     this.profesor = profesor;
+     }
+     */
 
     @Override
     public String toString() {
-       return "idseccion="+idSeccion+", codigo="+codigo+", profesor="+profesor;
+        return "idseccion=" + idSeccion + ", codigo=" + codigo;
     }
-    
-    
-    
+
 }

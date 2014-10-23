@@ -24,22 +24,24 @@ public class Clase {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idClase;
     
-    private int dia;
+    private String dia;
     private int horaInicio;
     private int horaFin;
     private String tipoClase;
+    private String profesor;
     private int idCurso;
     private int idSeccion;
 
     public Clase() {
     }
 
-    public Clase(int idClase, int dia, int horaInicio, int horaFin, String tipoClase, int idCurso, int idSeccion) {
+    public Clase(int idClase, String dia, int horaInicio, int horaFin, String tipoClase, String profesor, int idCurso, int idSeccion) {
         this.idClase = idClase;
         this.dia = dia;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.tipoClase = tipoClase;
+        this.profesor = profesor;
         this.idCurso = idCurso;
         this.idSeccion = idSeccion;
     }
@@ -52,11 +54,11 @@ public class Clase {
         this.idClase = idClase;
     }
 
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
@@ -84,6 +86,14 @@ public class Clase {
         this.tipoClase = tipoClase;
     }
 
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
+    }
+
     public int getIdCurso() {
         return idCurso;
     }
@@ -99,10 +109,10 @@ public class Clase {
     public void setIdSeccion(int idSeccion) {
         this.idSeccion = idSeccion;
     }
-    
+
     @Override
     public String toString() {
-       return "idClase="+idClase+", dia="+dia+", horaInicio="+horaInicio+", horaFin="+horaFin+", tipoClase="+tipoClase+", idCurso="+idCurso+", idSeccion="+idSeccion;
+       return "idClase="+idClase+", dia="+dia+", horaInicio="+horaInicio+", horaFin="+horaFin+", tipoClase="+tipoClase+", profesor="+profesor+", idCurso="+idCurso+", idSeccion="+idSeccion;
     }
     
 }
