@@ -15,6 +15,8 @@ public final class ConstantesWeb {
     public static final String USUARIO_INICIO = "UsuarioInicio";
     public static final String PRIVILEGIO_ADMINISTRADOR = "Administrador";
     public static final String PRIVILEGIO_ALUMNO = "Alumno";
+    public static final String CREAR_SECCION = "CrearSeccion";
+    public static final String MODIFICAR_SECCION = "ModificarSeccion";
 
     private ConstantesWeb() {
     }
