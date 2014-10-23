@@ -20,13 +20,5 @@
                 <li><a href="EliminarSeccion.jsp">Eliminar Seccion</a></li>
             </ul>
         </li>
-        <li>
-        <a href="">Matricula</a>
-            <ul>
-                <li><a href="">Registrar Matricula</a></li>
-                <li><a href="">Modificar Matricula</a></li>
-                <li><a href="SolicitarApertura.jsp">Solicitar Apertura de Salon</a></li>
-            </ul>
-        </li> 
     </ul>
 </div>
