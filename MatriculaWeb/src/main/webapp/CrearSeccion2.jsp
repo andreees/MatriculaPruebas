@@ -10,6 +10,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="pe.com.core.dao.*"%>
 <%@page import="pe.com.core.model.*"%>
+<%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
+<%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
+<%    UsuarioBean usuarioBean;
+    if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
+        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR)) {
+            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
+        }
+    }
+%>
 <%
     String curso = "curso A";
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pe.com.web.matriculaweb;
 
 import java.io.IOException;
@@ -13,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pe.com.core.dao.AdministradorDAO;
 import pe.com.core.dao.AlumnoDAO;
@@ -20,6 +20,8 @@ import pe.com.core.dao.UsuarioDAO;
 import pe.com.core.model.Administrador;
 import pe.com.core.model.Alumno;
 import pe.com.core.model.Usuario;
+import pe.com.web.matriculaweb.bean.UsuarioBean;
+import pe.com.web.matriculaweb.util.ConstantesWeb;
 import pe.com.web.matriculaweb.util.Encryptor;
 
 /**
@@ -42,7 +44,8 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         String url = "";
         String mensaje = "";
-        boolean iniciarSesionNow = false;
+        HttpSession sesion = request.getSession();
+        UsuarioBean usuarioBean;
         try {
             String sUsuario = request.getParameter("txtUsuario");
             String sClave = Encryptor.encrypt(request.getParameter("txtClave"));
@@ -50,7 +53,7 @@ public class Login extends HttpServlet {
             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
             UsuarioDAO uDAO = context.getBean(UsuarioDAO.class);
             Usuario user = uDAO.iniciarSesion(sUsuario, sClave);
-            
+
             if (user != null) {
                 // El usuario existe, comprobar que privilegio tiene
                 // Comprobar si es Alumno
@@ -59,18 +62,40 @@ public class Login extends HttpServlet {
                 if (alumno != null) {
                     // Es Alumno
                     url = "PrincipalAlumno.jsp";
-                    mensaje = "A Login successful";
-                    iniciarSesionNow = true;
+                    mensaje = "Alumno Login successful";
+                    usuarioBean = new UsuarioBean();
+                    usuarioBean.setIdUsuario(user.getIdUsuario());
+                    usuarioBean.setPrivilegio(ConstantesWeb.PRIVILEGIO_ALUMNO);
+                    usuarioBean.setIdAlumno(alumno.getIdAlumno());
+                    usuarioBean.setIdAdministrador(0);
+                    usuarioBean.setUsuarioLogin(user.getUsuario());
+                    usuarioBean.setNombres(alumno.getNombres());
+                    usuarioBean.setApellidos(alumno.getApellidos());
+                    if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) != null) {
+                        sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
+                    }
+                    sesion.setAttribute(ConstantesWeb.USUARIO_INICIO, usuarioBean);
                 } else {
                     AdministradorDAO administradorDAO = context.getBean(AdministradorDAO.class);
                     Administrador administrador = administradorDAO.iniciarSesionAdministrador(user.getIdUsuario());
                     if (administrador != null) {
                         // Es Administrador
                         url = "PrincipalAdministrador.jsp";
-                        mensaje = "A Login successful";
-                        iniciarSesionNow = true;
+                        mensaje = "Admin Login successful";
+                        usuarioBean = new UsuarioBean();
+                        usuarioBean.setIdUsuario(user.getIdUsuario());
+                        usuarioBean.setPrivilegio(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR);
+                        usuarioBean.setIdAlumno(0);
+                        usuarioBean.setIdAdministrador(administrador.getIdAdministrador());
+                        usuarioBean.setUsuarioLogin(user.getUsuario());
+                        usuarioBean.setNombres(administrador.getNombres());
+                        usuarioBean.setApellidos(administrador.getApellidos());
+                        if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) != null) {
+                            sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
+                        }
+                        sesion.setAttribute(ConstantesWeb.USUARIO_INICIO, usuarioBean);
                     } else {
-                        // Usuaario sin privilegios
+                        // Usuario sin privilegios
                         url = "index.jsp";
                         mensaje = "El usuario no tiene privilegios asignados";
                     }
@@ -80,13 +105,8 @@ public class Login extends HttpServlet {
                 url = "index.jsp";
                 mensaje = "Usuario y/o clave incorrecto";
             }
-            if (iniciarSesionNow) {
-                // Crear la sesion
-
-                response.sendRedirect(url);
-            } else {
-                response.sendRedirect(url + "?mensaje=" + mensaje);
-            }
+            // Redireccionar
+            response.sendRedirect(url + "?mensaje=" + mensaje);
         } catch (Exception e) {
             url = "error.jsp";
             mensaje = e.getMessage();

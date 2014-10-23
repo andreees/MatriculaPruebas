@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
         <%
             if (request.getParameter("mensaje") != null) {
         %>
-        <p style="color: red"><%= request.getParameter("mensaje")%></p>
+        <p style="color: red;font-size: 15px"><%= request.getParameter("mensaje")%></p>
         <%
             }
         %>

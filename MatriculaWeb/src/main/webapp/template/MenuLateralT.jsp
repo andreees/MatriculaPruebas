@@ -1,6 +1,6 @@
 <div id="MenusLaterales">
     <br><br><br><br>
-    <label>Seleccione una opci?n: </label>
+    <label>Seleccione una opci&oacute;n: </label>
     <br><br>
     <!-- Menu Vertical Left -->
     <ul class="menu vertical">
@@ -21,12 +21,12 @@
             </ul>
         </li>
 
-        <li><a href="">Matricula</a>
+        <!--li><a href="">Matricula</a>
             <ul>
                 <li><a href="">Registrar Matricula</a></li>
                 <li><a href="">Modificar Matricula</a></li>
                 <li><a href="SolicitarApertura.jsp">Solicitar Apertura de Salon</a></li>
             </ul>
-        </li> 
+        </li--> 
     </ul>
 </div>
