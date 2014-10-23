@@ -26,7 +26,16 @@ public class Seccion {
     private int idSeccion;
 
     private String codigo;
-    //private String profesor;
+    private String profesor;
+    private int idcurso;
+
+    public int getIdcurso() {
+        return idcurso;
+    }
+
+    public void setIdcurso(int idcurso) {
+        this.idcurso = idcurso;
+    }
 
     public Seccion() {
     }
@@ -58,7 +67,7 @@ public class Seccion {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
-    /*
+    
      public String getProfesor() {
      return profesor;
      }
@@ -66,7 +75,7 @@ public class Seccion {
      public void setProfesor(String profesor) {
      this.profesor = profesor;
      }
-     */
+     
 
     @Override
     public String toString() {
