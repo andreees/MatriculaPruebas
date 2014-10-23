@@ -25,7 +25,7 @@ public class CursoTest {
     }
     
     @Test
-    public void CrarCurso_Valido(){
+    public void CrearCurso_Valido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
         
@@ -53,4 +53,61 @@ public class CursoTest {
         }
     }
     
+    @Test
+    public void ModificarCurso_Valido(){
+        
+        //Leer de excel la data
+        List<List<String>> data = new Excel().leer_ModificarCurso();
+        for(List<String> listainterna : data){
+            selenium.open("/MatriculaWeb/ModificarCurso.jsp");
+            selenium.click("linkModificarCurso");
+            selenium.waitForPageToLoad("30000");
+            selenium.type("txtNombre", listainterna.get(0));
+            selenium.type("txtCodigo", listainterna.get(1));
+            selenium.type("txtCreditos", listainterna.get(2));
+            selenium.type("txtRequisitos", listainterna.get(3));
+            selenium.type("txtCiclo", listainterna.get(4));
+            selenium.click("btnModificarCurso");
+            selenium.waitForPageToLoad("30000");
+            
+            Assert.assertEquals(selenium.getText("lblMensaje"), "El curso ha sido modificado correctamente.");
+        }
+    }
+    
+    @Test
+    public void EliminarCurso_Valido(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+        
+        int cantidadDeCursosAlInicio,cantidadDeCursosAlFinal;
+        
+        List<Curso> lista;
+        lista = new ArrayList<Curso>();
+        lista=cursoDAO.list();
+        cantidadDeCursosAlInicio = lista.size();
+                
+        selenium.open("/MatriculaWeb/EliminarCurso.jsp");
+        selenium.click("linkEliminarCurso");
+        selenium.waitForPageToLoad("30000");
+
+        cantidadDeCursosAlFinal = cursoDAO.list().size();
+        Assert.assertTrue(cantidadDeCursosAlFinal<cantidadDeCursosAlInicio);
+        
+    }
+    
+    @Test
+    public void ListarCurso_Valido(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+        
+        selenium.open("/MatriculaWeb/ListarCurso.jsp");
+        selenium.waitForPageToLoad("30000");
+        
+        List<Curso> lista;
+//        lista = new ArrayList<Curso>();
+        lista=cursoDAO.list();
+
+        Assert.assertTrue(lista!=null);
+        
+    }
 }
