@@ -3,7 +3,7 @@
     Created on : 20/10/2014, 03:39:46 PM
     Author     : Roy Taza Rojas
 --%>
-    
+
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -25,33 +25,59 @@
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Listado de Cursos</h3><br>
+                <h3 id="MensajeBienvenida">Listado de Secciones</h3><br>
+                <p>A continuación se muestran las secciones existentes con el 
+                    respectivo curso al que pertenece</p>
                 <!-- Table sortable -->
                 <table class="sortable">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Creditos</th>
+                            <th>Seccion</th>
+                            <th>Curso</th>
                         </tr>
                     </thead>
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		        List<Curso> ListaDeCursos = new ArrayList<Curso>();
-                        CursoDAO cDAO= context.getBean(CursoDAO.class);
-                        ListaDeCursos=cDAO.list();
-                        for(Curso C: ListaDeCursos)
-                        {
+                        List<Curso> listCursos = new ArrayList<Curso>();
+                        List<Clase> listClases = new ArrayList<Clase>();
+                        List<Seccion> listSeccions = new ArrayList<Seccion>();
+                        CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+                        ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
+                        SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
+                        listCursos = cursoDAO.list();
+                        listSeccions = seccionDAO.list();
+                        for (Clase clase : listClases) {
                     %>
                     <tbody>
                         <tr>
-                            <td><%= C.getCodigo()%></td>
-                            <td><%= C.getNombre()%></td>
-                            <td><%= C.getCreditos()%></td>
+                            <td>
+                                <%
+                                    for (Curso curso : listCursos) {
+                                        if (clase.getIdCurso() == curso.getIdCurso()) {
+                                %>
+                                <%= curso.getNombre()%>
+                                <%
+                                            break;
+                                        }
+                                    }
+                                %>
+                            </td>
+                            <td>
+                                <%
+                                    for (Seccion seccion : listSeccions) {
+                                        if (clase.getIdSeccion() == seccion.getIdSeccion()) {
+                                %>
+                                <%= seccion.getCodigo()%>
+                                <%
+                                            break;
+                                        }
+                                    }
+                                %>
+                            </td>
                         </tr>                    
-                    <%
-                        }
-                    %>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
