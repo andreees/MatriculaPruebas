@@ -52,14 +52,14 @@ public class ClaseDAOImp implements ClaseDAO{
     
     public List<Clase> listXIdSeccion(int idSeccion) {
         List<Clase> lista = null;
-        
         try {
           Session session = this.sessionFactory.openSession();
-          lista = session.createQuery("from Clase").list();
+          lista = session.createQuery("from Clase where idseccion="+idSeccion).list();
           session.close();
           
             
         } catch (Exception e) {
+            
           }
 	return lista;
     }

@@ -61,12 +61,13 @@ public class SeccionDAOImp implements SeccionDAO {
         
         try {
           Session session = this.sessionFactory.openSession();
-          lista = session.createQuery("from Seccion").list();
+          lista = session.createQuery("from Seccion where idcurso="+idCurso).list();
           session.close();
           
             
         } catch (Exception e) {
-          }
+            
+        }
 	return lista;
     }
     
