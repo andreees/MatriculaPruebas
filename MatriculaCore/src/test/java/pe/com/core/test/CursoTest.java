@@ -39,6 +39,11 @@ public class CursoTest {
         //Leer de excel la data
         List<List<String>> data = new Excel().leer_CrearCurso();
         for(List<String> listainterna : data){
+            selenium.open("/MatriculaWeb/index.jsp");
+            selenium.type("txtUsuario", "epalomino");
+            selenium.type("txtClave", "eduardo");
+            selenium.click("btnIniciarSesion");
+            selenium.waitForPageToLoad("30000");
             selenium.open("/MatriculaWeb/CrearCurso.jsp");
             selenium.type("txtNombre", listainterna.get(0));
             selenium.type("txtCodigo", listainterna.get(1));
@@ -59,6 +64,11 @@ public class CursoTest {
         //Leer de excel la data
         List<List<String>> data = new Excel().leer_ModificarCurso();
         for(List<String> listainterna : data){
+            selenium.open("/MatriculaWeb/index.jsp");
+            selenium.type("txtUsuario", "epalomino");
+            selenium.type("txtClave", "eduardo");
+            selenium.click("btnIniciarSesion");
+            selenium.waitForPageToLoad("30000");
             selenium.open("/MatriculaWeb/ModificarCurso.jsp");
             selenium.click("linkModificarCurso");
             selenium.waitForPageToLoad("30000");
@@ -85,7 +95,12 @@ public class CursoTest {
         lista = new ArrayList<Curso>();
         lista=cursoDAO.list();
         cantidadDeCursosAlInicio = lista.size();
-                
+        
+        selenium.open("/MatriculaWeb/index.jsp");
+        selenium.type("txtUsuario", "epalomino");
+        selenium.type("txtClave", "eduardo");
+        selenium.click("btnIniciarSesion");
+        selenium.waitForPageToLoad("30000");
         selenium.open("/MatriculaWeb/EliminarCurso.jsp");
         selenium.click("linkEliminarCurso");
         selenium.waitForPageToLoad("30000");
@@ -100,11 +115,15 @@ public class CursoTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
         
+        selenium.open("/MatriculaWeb/index.jsp");
+        selenium.type("txtUsuario", "epalomino");
+        selenium.type("txtClave", "eduardo");
+        selenium.click("btnIniciarSesion");
+        selenium.waitForPageToLoad("30000");
         selenium.open("/MatriculaWeb/ListarCurso.jsp");
         selenium.waitForPageToLoad("30000");
         
         List<Curso> lista;
-//        lista = new ArrayList<Curso>();
         lista=cursoDAO.list();
 
         Assert.assertTrue(lista!=null);
