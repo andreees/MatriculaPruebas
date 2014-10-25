@@ -1,9 +1,3 @@
-<%-- 
-    Document   : newjspPrincipalAlumno
-    Created on : 22/10/2014, 04:30:15 PM
-    Author     : Roy
---%>
-
 <%@page import="pe.com.core.dao.ClaseDAO"%>
 <%@page import="pe.com.core.dao.SeccionDAO"%>
 <%@page import="pe.com.core.model.Clase"%>
