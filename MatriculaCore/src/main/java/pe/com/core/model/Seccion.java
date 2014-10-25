@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pe.com.core.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+package pe.com.core.model;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -41,13 +36,6 @@ public class Seccion {
     public Seccion() {
     }
 
-    /*
-     public Seccion(int idSeccion, String codigo, String profesor) {
-     this.idSeccion = idSeccion;
-     this.codigo = codigo;
-     this.profesor = profesor;
-     }
-     */
     public Seccion(int idSeccion, String codigo) {
         this.idSeccion = idSeccion;
         this.codigo = codigo;

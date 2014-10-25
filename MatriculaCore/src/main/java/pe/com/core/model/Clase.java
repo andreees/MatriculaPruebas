@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package pe.com.core.model;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,28 +20,15 @@ public class Clase {
     private int idClase;
     
     private String codigo;
-
-   
     private String dia;
     private int horaInicio;
     private int horaFin;
     private String tipoClase;
-    private int idCurso;
     private int idSeccion;
 
     public Clase() {
     }
-/*
-    public Clase(int idClase, String dia, int horaInicio, int horaFin, String tipoClase, int idCurso, int idSeccion) {
-        this.idClase = idClase;
-        this.dia = dia;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.tipoClase = tipoClase;
-        this.idCurso = idCurso;
-        this.idSeccion = idSeccion;
-    }
-*/
+
     public int getIdClase() {
         return idClase;
     }
@@ -95,14 +77,6 @@ public class Clase {
         this.tipoClase = tipoClase;
     }
 
-    public int getIdCurso() {
-        return idCurso;
-    }
-
-    public void setIdCurso(int idCurso) {
-        this.idCurso = idCurso;
-    }
-
     public int getIdSeccion() {
         return idSeccion;
     }
@@ -113,7 +87,7 @@ public class Clase {
 
     @Override
     public String toString() {
-       return "idClase="+idClase+", dia="+dia+", horaInicio="+horaInicio+", horaFin="+horaFin+", tipoClase="+tipoClase+", idCurso="+idCurso+", idSeccion="+idSeccion;
+       return "idClase="+idClase+", dia="+dia+", horaInicio="+horaInicio+", horaFin="+horaFin+", tipoClase="+tipoClase+", idSeccion="+idSeccion;
     }
     
 }

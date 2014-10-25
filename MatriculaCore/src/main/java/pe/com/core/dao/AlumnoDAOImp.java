@@ -11,8 +11,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import pe.com.core.model.Alumno;
+import org.apache.log4j.Logger;
 /**
  *
  * @author zcrome
@@ -20,6 +20,7 @@ import pe.com.core.model.Alumno;
 public class AlumnoDAOImp implements AlumnoDAO{
     
     private SessionFactory sessionFactory;
+    private final static Logger LOGGER = Logger.getLogger(AlumnoDAOImp.class);
 
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -34,7 +35,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
             session.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
     }
 
@@ -48,7 +49,8 @@ public class AlumnoDAOImp implements AlumnoDAO{
           
             
         } catch (Exception e) {
-          }
+            LOGGER.error("Sorry, something wrong!", e);
+        }
 	return lista;
     }
 
@@ -61,8 +63,8 @@ public class AlumnoDAOImp implements AlumnoDAO{
             session.close();
             
         } catch (Exception e) {
-            
-            e.printStackTrace();
+        
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
         
@@ -77,9 +79,8 @@ public class AlumnoDAOImp implements AlumnoDAO{
             tx.commit();
             session.close();
             
-        } catch (Exception e) {
-            
-            e.printStackTrace();
+        } catch (Exception e) {            
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
         
@@ -90,9 +91,6 @@ public class AlumnoDAOImp implements AlumnoDAO{
         Alumno alumno = null;
         
         try {
-            
-            
-            
             Session session = this.sessionFactory.openSession();
             Transaction tx = session.beginTransaction();
             alumno = (Alumno)session.get(Alumno.class, id);
@@ -101,7 +99,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
             
         } catch (Exception e) {
             
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
             
         }
         return alumno;   
@@ -121,7 +119,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
         return alumno;
     }
