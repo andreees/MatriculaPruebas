@@ -55,3 +55,7 @@ MatriculaCore/src/main/java/pe/com/core/dao/SeccionDAOImp.java
 MatriculaCore/src/main/java/pe/com/core/dao/ClaseDAOImp.java
 MatriculaWeb/src/main/webapp/PrincipalAlumno.jsp
 MatriculaWeb/src/main/webapp/PrincipalAlumno.jsp
+MatriculaCore/src/main/java/pe/com/core/dao/ClaseDAOImp.java
+MatriculaWeb/src/main/webapp/PrincipalAlumno.jsp
+MatriculaCore/src/main/java/pe/com/core/model/Clase.java
+MatriculaCore/src/main/java/pe/com/core/dao/SeccionDAOImp.java
