@@ -34,26 +34,16 @@ public class Matricula {
     private int horamatricula;
     private int idAlumno;
     private int idCurso;
-    private int idSeccion;
-
-    public int getIdSeccion() {
-        return idSeccion;
-    }
-
-    public void setIdSeccion(int idSeccion) {
-        this.idSeccion = idSeccion;
-    }
 
     public Matricula() {
     }
 
-    public Matricula(int idMatricula, int horamatricula, Date fechamatricula, int idAlumno, int idCurso,int idSeccion) {
+    public Matricula(int idMatricula, int horamatricula, Date fechamatricula, int idAlumno, int idCurso) {
         this.idMatricula = idMatricula;
         this.horamatricula = horamatricula;
         this.fechamatricula = fechamatricula;
         this.idAlumno = idAlumno;
         this.idCurso = idCurso;
-        this.idSeccion=idSeccion;
     }
 
     public int getIdMatricula() {
@@ -98,7 +88,7 @@ public class Matricula {
 
     @Override
     public String toString() {
-       return "idMatricula="+idMatricula+", horamatricula="+horamatricula+", fechamatricula="+fechamatricula+", idcurso="+idCurso+", idalumno="+idAlumno+", idseccion="+idSeccion;
+       return "idMatricula="+idMatricula+", horamatricula="+horamatricula+", fechamatricula="+fechamatricula+", idcurso="+idCurso+", idalumno="+idAlumno;
     }
         
     
