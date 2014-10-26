@@ -27,14 +27,18 @@
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
+        <script type="text/cjs">
+            
+            
+        </script> 
     </head>
     <body>
         <div id="Contenedor">
             <!--<%@include file="template/CabeceraT.jsp" %>-->
             <div id="ContenidoCentral">
                 
-                <h6 id="MensajeBienvenida">Seleccione los cursos en los que desea matricularse</h6><br>
-                <form name="formMatricula" action="" method="POST">
+                <h5 id="MensajeBienvenida">Seleccione los cursos y secciones en los que desea matricularse</h5><br>
+                <form name="formMatricula" action="RegistrarMatriculaS" method="POST">
                 <table>
                     <% 
                     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -46,25 +50,26 @@
                     ClaseDAO ccDAO;
 
                     ListaDeCursos=cDAO.list();
+                    int i=0;
                     for(Curso C: ListaDeCursos)
                     {
                     %>
                     
                     <thead>
                         <tr>
-                            <th><%=C.getNombre() %></th>
+                            <th><input type="checkbox" name="ck<%=i%>"><%=C.getNombre() %></th>
                         </tr>
                     </thead>
                     <tbody>
                         
                             <%
                             sDAO= context.getBean(SeccionDAO.class);
-                            ListaDeSecciones=sDAO.listXIdCurso(C.getIdCurso());
+                            ListaDeSecciones=sDAO.listXIdCurso(C.getIdCurso());         
                             for(Seccion S: ListaDeSecciones)
                             {
                             %>
                         <tr>
-                            <td><input type="radio" name="<%=S.getCodigo()%>" value="<%=S.getIdSeccion()%>"><%=S.getCodigo()%> 
+                            <td><input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" ><%=S.getCodigo()%> 
                                 (
                                         <%
                                         ccDAO = context.getBean(ClaseDAO.class);
@@ -79,7 +84,6 @@
 
                                         <%
                                         }
-                                        
                                         %>
                                         <%=S.getProfesor()%>
                                 )<br>
@@ -89,6 +93,7 @@
                             %>
                     </tbody>
                     <%
+                    i++;
                     }
                     %>
                 </table>

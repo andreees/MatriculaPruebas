@@ -69,7 +69,7 @@
                                 </td>
                             <tr>
                                 <td>
-                                    <label for="MotivoApertura">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
+                                    <label for="MotivoApertura">Motivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
                                 </td>
                                 <td>
                                     <textarea name="MotivoApertura" rows="6" cols="100" required="true"></textarea>
