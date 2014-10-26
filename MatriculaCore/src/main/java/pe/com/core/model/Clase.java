@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,7 +34,7 @@ public class Clase {
 
     public Clase() {
     }
-/*
+    
     public Clase(int idClase, String dia, int horaInicio, int horaFin, String tipoClase, int idSeccion) {
         this.idClase = idClase;
         this.dia = dia;
@@ -42,7 +43,7 @@ public class Clase {
         this.tipoClase = tipoClase;
         this.idSeccion = idSeccion;
     }
-*/
+
     public int getIdClase() {
         return idClase;
     }

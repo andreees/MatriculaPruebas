@@ -9,8 +9,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 import pe.com.core.model.Curso;
+import org.apache.log4j.Logger;
 /**
  *
  * @author zcrome
@@ -18,7 +18,7 @@ import pe.com.core.model.Curso;
 public class CursoDAOImp implements CursoDAO{
 
     private SessionFactory sessionFactory;
-
+    private final static Logger LOGGER = Logger.getLogger(CursoDAOImp.class);    
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -32,7 +32,7 @@ public class CursoDAOImp implements CursoDAO{
             session.close();
             
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
     }
 
@@ -42,10 +42,10 @@ public class CursoDAOImp implements CursoDAO{
         try {
           Session session = this.sessionFactory.openSession();
           lista = session.createQuery("from Curso").list();
-          session.close();
-          
+          session.close();        
             
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
           }
 	return lista;
     }
@@ -59,8 +59,7 @@ public class CursoDAOImp implements CursoDAO{
             session.close();
             
         } catch (Exception e) {
-            
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
         
@@ -76,8 +75,7 @@ public class CursoDAOImp implements CursoDAO{
             session.close();
             
         } catch (Exception e) {
-            
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
         
@@ -96,9 +94,7 @@ public class CursoDAOImp implements CursoDAO{
             session.close();
             
         } catch (Exception e) {
-            
-            e.printStackTrace();
-            
+            LOGGER.error("Sorry, something wrong!", e);
         }
         return curso;   
     }

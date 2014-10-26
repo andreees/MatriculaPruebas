@@ -11,8 +11,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import pe.com.core.model.Usuario;
+
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -21,7 +22,8 @@ import pe.com.core.model.Usuario;
 public class UsuarioDAOImp implements UsuarioDAO {
 
     private SessionFactory sessionFactory;
-
+    private final static Logger LOGGER = Logger.getLogger(UsuarioDAOImp.class);
+    
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -35,7 +37,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
             session.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
     }
 
@@ -48,6 +50,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
             session.close();
 
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
         }
         return lista;
     }
@@ -62,7 +65,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
 
@@ -79,7 +82,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
             return false;
         }
 
@@ -99,7 +102,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
 
         }
         return usuario;
@@ -119,7 +122,7 @@ public class UsuarioDAOImp implements UsuarioDAO {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
         return usuario;
     }
