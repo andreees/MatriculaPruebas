@@ -26,14 +26,24 @@ public class Solicitud {
     
     private String motivo;
     private int idAlumno;
+    private int idCurso;
+
+    public int getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
 
     public Solicitud() {
     }
 
-    public Solicitud(int idSolicitud, String motivo, int idAlumno) {
+    public Solicitud(int idSolicitud, String motivo, int idAlumno,int idCurso) {
         this.idSolicitud = idSolicitud;
         this.motivo = motivo;
         this.idAlumno = idAlumno;
+        this.idCurso=idCurso;
     }
 
     public int getIdSolicitud() {
@@ -62,7 +72,7 @@ public class Solicitud {
     
     @Override
     public String toString() {
-       return "idSolicitud="+idSolicitud+", motivo="+motivo+", idAlumno="+idAlumno;
+       return "idSolicitud="+idSolicitud+", motivo="+motivo+", idAlumno="+idAlumno+", idCurso="+idCurso;
     }
     
 }
