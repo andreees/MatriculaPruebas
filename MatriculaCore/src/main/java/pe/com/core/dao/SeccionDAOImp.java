@@ -22,10 +22,8 @@ import org.apache.log4j.Logger;
 public class SeccionDAOImp implements SeccionDAO {
     
     private SessionFactory sessionFactory;
-
     private final static Logger LOGGER = Logger.getLogger(SeccionDAOImp.class);
     
-
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
