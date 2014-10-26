@@ -45,3 +45,8 @@ Temporary Items
 /MatriculaWeb/target/
 /MatriculaCore/target/
 MatriculaCore/src/main/resources/spring.xml
+MatriculaWeb/src/main/java/pe/com/web/matriculaweb/Login.java
+MatriculaWeb/pom.xml
+MatriculaCore/src/test/java/pe/com/core/test/CursoTest.java
+MatriculaCore/src/main/java/pe/com/core/dao/SeccionDAOImp.java
+MatriculaCore/src/main/java/pe/com/core/dao/ClaseDAOImp.java
