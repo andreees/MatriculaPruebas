@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         String url = "";
         String mensaje = "";
-        HttpSession sesion = request.getSession();
+        HttpSession sesion = request.getSession(true);
         UsuarioBean usuarioBean;
         try {
             String sUsuario = request.getParameter("txtUsuario");
@@ -75,6 +75,7 @@ public class Login extends HttpServlet {
                         sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
                     }
                     sesion.setAttribute(ConstantesWeb.USUARIO_INICIO, usuarioBean);
+                    sesion.setMaxInactiveInterval(60 * 60);
                 } else {
                     AdministradorDAO administradorDAO = context.getBean(AdministradorDAO.class);
                     Administrador administrador = administradorDAO.iniciarSesionAdministrador(user.getIdUsuario());
@@ -94,6 +95,7 @@ public class Login extends HttpServlet {
                             sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
                         }
                         sesion.setAttribute(ConstantesWeb.USUARIO_INICIO, usuarioBean);
+                        sesion.setMaxInactiveInterval(60 * 60);
                     } else {
                         // Usuario sin privilegios
                         url = "index.jsp";

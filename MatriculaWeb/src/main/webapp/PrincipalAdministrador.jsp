@@ -3,14 +3,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%    
     UsuarioBean usuarioBean;
-    if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+    HttpSession sesion = request.getSession(false);
+    if (sesion == null) {
+        response.sendRedirect("index.jsp");
+    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
         response.sendRedirect("index.jsp");
     } else {
         usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
         if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR)) {
             response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        }
-    }
+        } else {
 %>
 <!DOCTYPE html>
 <html>
@@ -35,3 +37,7 @@
         </div>
     </body>
 </html>
+<%
+        }
+    }
+%>

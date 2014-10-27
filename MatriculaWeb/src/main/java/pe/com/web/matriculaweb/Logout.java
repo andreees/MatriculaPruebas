@@ -33,12 +33,14 @@ public class Logout extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
+        HttpSession sesion = request.getSession(false);
         if (sesion != null) {
-            sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
+            if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) != null) {
+                sesion.removeAttribute(ConstantesWeb.USUARIO_INICIO);
+            }
             sesion.invalidate();
-            response.sendRedirect("index.jsp");
         }
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
