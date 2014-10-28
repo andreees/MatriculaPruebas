@@ -1,16 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    
-    UsuarioBean usuarioBean;
-    if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+<%    UsuarioBean usuarioBean;
+    HttpSession sesion = request.getSession(false);
+    if (sesion == null) {
+        response.sendRedirect("index.jsp");
+    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
         response.sendRedirect("index.jsp");
     } else {
         usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
         if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR)) {
             response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        }
-    }
+        } else {
 %>
 <!DOCTYPE html>
 <html>
@@ -21,10 +22,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
+        <script>
+            $(document).ready(function() {
+                $("#menu_cursos").addClass("current");
+                $("#menu_secciones").removeClass("current");
+            });
+        </script>
     </head>
     <body>
         <%
-            boolean Exito=Boolean.parseBoolean(request.getParameter("eee"));
+            boolean Exito = Boolean.parseBoolean(request.getParameter("eee"));
         %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
@@ -32,7 +39,7 @@
             <div id="ContenidoCentral">
                 <h3 id="MensajeBienvenida">Crear Curso</h3><br>
                 <div style="padding-left: 20%">
-                    
+
                     <form name="formCrearCurso" action="CrearCursoS" method="POST">
                         <table style="width: 60%">
                             <tr>
@@ -81,17 +88,20 @@
                             </tr>
                         </table>
                     </form>
-                    <%if(Exito)
-                    {
+                    <%if (Exito) {
                     %>
-                        <!-- Success -->
-                        <div class="notice success"><i class="icon-ok icon-large"></i> Curso Creado Correctamente! 
+                    <!-- Success -->
+                    <div class="notice success"><i class="icon-ok icon-large"></i> Curso Creado Correctamente! 
                         <a href="#close" class="icon-remove"></a></div>
-                    <%
-                    }
-                    %>
+                        <%
+                            }
+                        %>
                 </div>
             </div>
         </div>
     </body>
 </html>
+<%
+        }
+    }
+%>

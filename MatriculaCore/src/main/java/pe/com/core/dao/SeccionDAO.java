@@ -26,4 +26,5 @@ public interface SeccionDAO {
         
         public Seccion get(int id);
 	
+        public int saveAndReturnId(Seccion s);
 }

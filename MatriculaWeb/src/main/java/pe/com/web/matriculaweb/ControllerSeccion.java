@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pe.com.web.matriculaweb;
 
 import java.io.IOException;
@@ -13,6 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import pe.com.core.dao.ClaseDAO;
+import pe.com.core.dao.CursoDAO;
+import pe.com.core.dao.SeccionDAO;
+import pe.com.core.model.Clase;
+import pe.com.core.model.Curso;
+import pe.com.core.model.Seccion;
 import pe.com.web.matriculaweb.util.ConstantesWeb;
 
 /**
@@ -34,8 +40,8 @@ public class ControllerSeccion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("action");
-        
-        switch(accion){
+
+        switch (accion) {
             case ConstantesWeb.CREAR_SECCION:
                 this.CrearSeccion(request, response);
                 break;
@@ -44,15 +50,79 @@ public class ControllerSeccion extends HttpServlet {
                 break;
         }
     }
-    
+
     protected void CrearSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String url = "";
+        String mensaje = "";
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
+            ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
+
+            Seccion seccion = new Seccion();
+            Clase clase = new Clase();
+            //seccion.setCodigo(request.getParameter("txtCodigoSeccion"));
+            seccion.setCodigo("SW31");
+            seccion.setProfesor(request.getParameter("txtProfesor"));
+            seccion.setIdcurso(Integer.parseInt(request.getParameter("idCurso")));
+            //clase.setCodigo("txtCodigoClase");
+            clase.setCodigo("G1");
+            clase.setDia(request.getParameter("cbDia"));
+            clase.setHoraInicio(Integer.parseInt(request.getParameter("txtHoraInicio")));
+            clase.setHoraFin(Integer.parseInt(request.getParameter("txtHoraFin")));
+            clase.setTipoClase(request.getParameter("cbTipoClase"));
+            clase.setIdSeccion(seccionDAO.saveAndReturnId(seccion));
+            claseDAO.save(clase);
+
+            url = "CrearSeccion3.jsp";
+            mensaje = "success";
+            response.sendRedirect(url + "?mensaje=" + mensaje);
+        } catch (Exception e) {
+            url = "error.jsp";
+            mensaje = e.getMessage();
+            response.sendRedirect(url + "?mensaje=" + mensaje);
+        }
     }
-    
+
     protected void ModificarSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String url = "";
+        String mensaje = "";
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+            CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+            SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
+            ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
+            
+            int idCurso = Integer.parseInt(request.getParameter("idCurso"));
+            int idSeccion = Integer.parseInt(request.getParameter("idSeccion"));
+            int idClase = Integer.parseInt(request.getParameter("idClase"));
+
+            Curso curso = cursoDAO.get(idCurso);
+            Seccion seccion = seccionDAO.get(idSeccion);
+            Clase clase = claseDAO.get(idClase);
+            //seccion.setCodigo(request.getParameter("txtCodigoSeccion"));
+            seccion.setCodigo("SW31");
+            seccion.setProfesor(request.getParameter("txtProfesor"));
+            //clase.setCodigo("txtCodigoClase");
+            clase.setCodigo("G1");
+            clase.setDia(request.getParameter("cbDia"));
+            clase.setHoraInicio(Integer.parseInt(request.getParameter("txtHoraInicio")));
+            clase.setHoraFin(Integer.parseInt(request.getParameter("txtHoraFin")));
+            clase.setTipoClase(request.getParameter("cbTipoClase"));
+            
+            seccionDAO.update(seccion);
+            claseDAO.update(clase);
+
+            url = "ModificarSeccion4.jsp";
+            mensaje = "success";
+            response.sendRedirect(url + "?mensaje=" + mensaje);
+        } catch (Exception e) {
+            url = "error.jsp";
+            mensaje = e.getMessage();
+            response.sendRedirect(url + "?mensaje=" + mensaje);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

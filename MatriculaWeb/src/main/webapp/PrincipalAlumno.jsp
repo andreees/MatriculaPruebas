@@ -18,23 +18,25 @@
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%    
-    UsuarioBean usuarioBean=null;
-    if ( session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+
+<%    UsuarioBean usuarioBean;
+    HttpSession sesion = request.getSession(false);
+    if (sesion == null) {
+        response.sendRedirect("index.jsp");
+    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
         response.sendRedirect("index.jsp");
     } else {
         usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
         if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ALUMNO)) {
             response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        }
-    }
+        } else {
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Matricula - Alumno</title>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
@@ -44,7 +46,7 @@
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
-                
+
                 <h5 id="MensajeBienvenida">Seleccione los cursos y secciones en los que desea matricularse</h5><br>
                 <form name="formMatricula" action="RegistrarMatriculaS" method="POST">
 
@@ -86,14 +88,13 @@
                     <tbody>
                         
                             <%
-                            sDAO= context.getBean(SeccionDAO.class);
+                                sDAO = context.getBean(SeccionDAO.class);
 
-                            ListaDeSecciones=sDAO.listXIdCurso(C.getIdCurso());
+                                ListaDeSecciones = sDAO.listXIdCurso(C.getIdCurso());
 
-                            for(Seccion S: ListaDeSecciones)
-                            {
+                                for (Seccion S : ListaDeSecciones) {
                             %>
-                        <tr>
+                            <tr>
 
                             <td coslpan="2">&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" 
@@ -104,19 +105,18 @@
                                        %>
                                        ><%=S.getCodigo()%> 
 
-                                (
-                                        <%
+                                    (
+                                    <%
                                         ccDAO = context.getBean(ClaseDAO.class);
-                                        ListaDeClases=ccDAO.listXIdSeccion(S.getIdSeccion());
-                                        
-                                        for(Clase CC: ListaDeClases)
-                                        {
-                                        %>
-                                        <%=CC.getDia() %> <%=CC.getHoraInicio() %> - <%=CC.getHoraFin()%> : <%=CC.getCodigo()%>
-                                        
-                                         &nbsp;&nbsp;&nbsp;
+                                        ListaDeClases = ccDAO.listXIdSeccion(S.getIdSeccion());
 
-                                        <%
+                                        for (Clase CC : ListaDeClases) {
+                                    %>
+                                    <%=CC.getDia()%> <%=CC.getHoraInicio()%> - <%=CC.getHoraFin()%> : <%=CC.getCodigo()%>
+
+                                    &nbsp;&nbsp;&nbsp;
+
+                                    <%
                                         }
 
                                         %>
@@ -125,10 +125,11 @@
                             </td>
                         </tr>
                             <%
-                            }
+                                }
                             %>
-                    </tbody>
-                    <%
+                        </tbody>
+                        <%
+                                i++;
 
                     i++;
 
@@ -146,3 +147,7 @@
         </div>
     </body>
 </html>
+<%
+        }
+    }
+%>

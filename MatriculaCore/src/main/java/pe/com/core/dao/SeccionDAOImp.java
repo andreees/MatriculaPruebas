@@ -145,4 +145,22 @@ public class SeccionDAOImp implements SeccionDAO {
         return seccion;        
     }
         
+    public int saveAndReturnId(Seccion s) {
+        int idSeccion = 0;
+        try {
+            Session session = this.sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.persist(s);
+            tx.commit();
+            session.close();
+            idSeccion = s.getIdSeccion();
+        } catch (Exception e) {
+
+            LOGGER.error("Sorry, something wrong!", e);
+
+        }
+        return idSeccion;
+        
+    }
+
 }
