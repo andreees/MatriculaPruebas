@@ -41,8 +41,8 @@
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Solicitud de Apertura de Curso</h3><br>
-                <div style="padding-left: 20%">
+                <h5 id="MensajeBienvenida">Solicitud de Apertura de Curso</h5><br>
+                <div style="padding-left: 10%">
                     
                     <form name="formSolicitarApertura" action="SolicitarAperturaS" method="POST">
                         <table style="width: 40%">
@@ -69,7 +69,7 @@
                                 </td>
                             <tr>
                                 <td>
-                                    <label for="MotivoApertura">Motivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
+                                    <label for="MotivoApertura">Motivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </td>
                                 <td>
                                     <textarea name="MotivoApertura" rows="6" cols="100" required="true"></textarea>

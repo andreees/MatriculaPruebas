@@ -9,6 +9,7 @@ package pe.com.web.matriculaweb;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pe.com.core.dao.CursoDAO;
+import pe.com.core.dao.MatriculaDAO;
 import pe.com.core.dao.SolicitudDAO;
 import pe.com.core.model.Curso;
+import pe.com.core.model.Matricula;
 import pe.com.core.model.Solicitud;
 import pe.com.web.matriculaweb.bean.UsuarioBean;
 import pe.com.web.matriculaweb.util.ConstantesWeb;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 /**
  *
@@ -36,21 +41,53 @@ public class RegistrarMatriculaS extends HttpServlet{
         
 
         CursoDAO cDAO= context.getBean(CursoDAO.class);
+        MatriculaDAO mDAO= context.getBean(MatriculaDAO.class);
+        HttpSession sesion=request.getSession();
+        Matricula m;
+        String ck,rb;
+                    
+       UsuarioBean usuario=(UsuarioBean)sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
         cDAO.list();
-        int j;
+        
+        DateTime dt;
         for(int i=0;i<cDAO.list().size();i++){
-            String resp=request.getParameter("ck"+i);
-            if(resp!=null){//check
-                response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                break;
+            ck=request.getParameter("ck"+i);
+            if(ck!=null){//check en curso - Agregar
+                rb=request.getParameter("rb"+i);
+                if(rb!=null){//check en seccion - Agregar
+                    Curso c=cDAO.get(i+1);
+                    m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
+                    dt=DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT-5:00")));
+                    if(m!=null){//existe registro para alumno y curso en matricula
+                        m.setIdSeccion(Integer.parseInt(rb));//modificar
+                        m.setHoramatricula(dt.getHourOfDay());
+                        mDAO.update(m);
+                        //Registro de Matricula Modificado
+                    }
+                    else{//NO existe registro para Curso y Alumno
+                        m=new Matricula();
+                        m.setHoramatricula(dt.getHourOfDay());
+                        m.setFechamatricula(dt.toDate());
+                        m.setIdCurso(i+1);
+                        m.setIdSeccion(Integer.parseInt(rb));
+                        m.setIdAlumno(usuario.getIdAlumno());
+                        mDAO.save(m);
+                        //Registro de Matricula Insertado
+                    }
+                }
             }
-            
-            else{//No check
-                response.sendRedirect("SolicitarApertura.jsp");
-                break;
+            else{//No check curso -- Eliminar
+                Curso c=cDAO.get(i+1);
+                m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
+                if(m!=null){//si alumno está registrado en curso
+                    mDAO.delete(m);
+                    //Registro de Matricula Eliminado
+                }
             }
         }
         
+        
+       
         
         /*
         String sMotivoApertura=request.getParameter("MotivoApertura");

@@ -4,6 +4,8 @@
     Author     : Roy
 --%>
 
+<%@page import="pe.com.core.model.Matricula"%>
+<%@page import="pe.com.core.dao.MatriculaDAO"%>
 <%@page import="pe.com.core.dao.ClaseDAO"%>
 <%@page import="pe.com.core.dao.SeccionDAO"%>
 <%@page import="pe.com.core.model.Clase"%>
@@ -16,7 +18,17 @@
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%    
+    UsuarioBean usuarioBean=null;
+    if ( session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
+        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ALUMNO)) {
+            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
+        }
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +42,7 @@
     </head>
     <body>
         <div id="Contenedor">
-            <!--<%@include file="template/CabeceraT.jsp" %>-->
+            <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
                 
                 <h5 id="MensajeBienvenida">Seleccione los cursos y secciones en los que desea matricularse</h5><br>
@@ -45,9 +57,10 @@
                     CursoDAO cDAO= context.getBean(CursoDAO.class);
                     SeccionDAO sDAO;
                     ClaseDAO ccDAO;
-
+                    MatriculaDAO mDAO=context.getBean(MatriculaDAO.class);
                     ListaDeCursos=cDAO.list();
-
+                    Matricula m;
+                    
                     int i=0;
 
                     for(Curso C: ListaDeCursos)
@@ -57,7 +70,16 @@
                     <thead>
                         <tr>
 
-                            <th><input type="checkbox" name="ck<%=i%>"><%=C.getNombre() %></th>
+                            <th colspan="2"><input type="checkbox" name="ck<%=i%>" 
+                            <% 
+                                m=mDAO.getXIdCursoXIdAlumno(i+1,usuarioBean.getIdAlumno()); 
+                                if(m!=null){
+                                    %>checked<% 
+                                }    
+                                       
+                            %>
+                            
+                            ><%=C.getNombre() %></th>
 
                         </tr>
                     </thead>
@@ -73,7 +95,14 @@
                             %>
                         <tr>
 
-                            <td><input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" ><%=S.getCodigo()%> 
+                            <td coslpan="2">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" 
+                                       <% 
+                                            if(m.getIdSeccion()==S.getIdSeccion()){
+                                                %>checked<% 
+                                            }    
+                                       %>
+                                       ><%=S.getCodigo()%> 
 
                                 (
                                         <%
@@ -92,7 +121,8 @@
 
                                         %>
                                         <%=S.getProfesor()%>
-                                )<br>
+                                )
+                            </td>
                         </tr>
                             <%
                             }
@@ -104,8 +134,13 @@
 
                     }
                     %>
+                    <thead>
+                        <tr>
+                            <th><input type="submit" value="Grabar Matricula" /></th><th><input type="submit" value="Solicitar Apertura de Curso" formaction="SolicitarApertura.jsp"/></th>
+                        </tr>
+                    </thead>
                 </table>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Grabar Matricula" />
+                
             </form>
             </div>
         </div>
