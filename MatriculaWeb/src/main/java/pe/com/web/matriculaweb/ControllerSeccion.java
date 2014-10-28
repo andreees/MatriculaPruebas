@@ -64,7 +64,6 @@ public class ControllerSeccion extends HttpServlet {
             Seccion seccion = new Seccion();
             Clase clase = new Clase();
             seccion.setCodigo(request.getParameter("txtCodigoSeccion"));
-            seccion.setCodigo("SW31");
             seccion.setProfesor(request.getParameter("txtProfesor"));
             seccion.setIdcurso(Integer.parseInt(request.getParameter("idCurso")));
             clase.setCodigo(request.getParameter("txtSalon"));

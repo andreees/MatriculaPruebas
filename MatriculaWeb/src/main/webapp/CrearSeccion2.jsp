@@ -71,15 +71,15 @@
                         <tbody>
                             <tr>
                                 <td>Codigo de Seccion: </td>
-                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="" maxlength="50"></td>
+                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Profesor: </td>
-                                <td><input id="txtProfesor" type="text" name="txtProfesor" value="" maxlength="50"></td>
+                                <td><input id="txtProfesor" type="text" name="txtProfesor" value="" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Salon: </td>
-                                <td><input id="txtSalon" type="text" name="txtSalon" value="" maxlength="50"></td>
+                                <td><input id="txtSalon" type="text" name="txtSalon" value="" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Dia: </td>
@@ -97,11 +97,11 @@
                             </tr>
                             <tr>
                                 <td>Hora Inicio: </td>
-                                <td><input id="txtHoraInicio" type="number" name="txtHoraInicio" value="" min="7" max="23"></td>
+                                <td><input id="txtHoraInicio" type="number" name="txtHoraInicio" value="" min="7" max="23" required></td>
                             </tr>
                             <tr>
                                 <td>Hora Fin </td>
-                                <td><input id="txtHoraFin" type="number" name="txtHoraFin" value="" min="7" max="23"></td>
+                                <td><input id="txtHoraFin" type="number" name="txtHoraFin" value="" min="7" max="23" required></td>
                             </tr>
                             <tr>
                                 <td>Tipo de clase: </td>
