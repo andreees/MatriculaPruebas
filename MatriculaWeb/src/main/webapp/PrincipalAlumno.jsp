@@ -43,6 +43,14 @@
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
     </head>
     <body>
+        <%
+            String r= request.getParameter("eee");
+            int Exito=0;
+            if(r!=null){
+                Exito=Integer.parseInt(r);
+            }
+            
+        %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
@@ -81,7 +89,7 @@
                                        
                             %>
                             
-                            ><%=C.getNombre() %></th>
+                            ><%=C.getNombre() %> - <%=C.getCodigo()%></th>
 
                         </tr>
                     </thead>
@@ -99,9 +107,11 @@
                             <td coslpan="2">&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" 
                                        <% 
+                                          if(m!=null){
                                             if(m.getIdSeccion()==S.getIdSeccion()){
                                                 %>checked<% 
-                                            }    
+                                            }
+                                          }
                                        %>
                                        ><%=S.getCodigo()%> 
 
@@ -141,7 +151,24 @@
                         </tr>
                     </thead>
                 </table>
-                
+                <%if(Exito==1){
+                    %>
+                        <!-- Success -->
+                        <div class="notice success"><i class="icon-ok icon-large"></i>Se registró su Matricula correctamente 
+                        <a href="#close" class="icon-remove"></a></div>
+                    <%
+                    }
+                    else if(Exito==2){
+                    %>
+                        <!-- NotSuccess -->
+                        <div class="notice warning"><i class="icon-remove icon-large"></i> No se ha grabado la matricula 
+                        <a href="#close" class="icon-remove"></a></div>
+                    <%
+                    }
+                    else {
+                    
+                    }
+                    %>
             </form>
             </div>
         </div>

@@ -50,83 +50,63 @@ public class RegistrarMatriculaS extends HttpServlet{
         cDAO.list();
         
         DateTime dt;
-        for(int i=0;i<cDAO.list().size();i++){
-            ck=request.getParameter("ck"+i);
-            if(ck!=null){//check en curso - Agregar
-                rb=request.getParameter("rb"+i);
-                if(rb!=null){//check en seccion - Agregar
+        boolean modificado=false;
+        try{
+            for(int i=0;i<cDAO.list().size();i++){
+                ck=request.getParameter("ck"+i);
+                if(ck!=null){//check en curso - Agregar
+                    rb=request.getParameter("rb"+i);
+                    if(rb!=null){//check en seccion - Agregar
+                        Curso c=cDAO.get(i+1);
+                        m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
+                        dt=DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT-5:00")));
+                        if(m!=null){//existe registro para alumno y curso en matricula
+                            if(m.getIdSeccion()!=Integer.parseInt(rb)){
+                                modificado=true;
+                                m.setIdSeccion(Integer.parseInt(rb));//modificar
+                                m.setHoramatricula(dt.getHourOfDay());
+                                mDAO.update(m);
+                                //Registro de Matricula Modificado
+                            }
+                        }
+                        else{//NO existe registro para Curso y Alumno
+                            m=new Matricula();
+                            m.setHoramatricula(dt.getHourOfDay());
+                            m.setFechamatricula(dt.toDate());
+                            m.setIdCurso(i+1);
+                            m.setIdSeccion(Integer.parseInt(rb));
+                            m.setIdAlumno(usuario.getIdAlumno());
+                            mDAO.save(m);
+                            //Registro de Matricula Insertado
+                            modificado=true;
+                        }
+                        
+                    }
+                }
+                else{//No check curso -- Eliminar
                     Curso c=cDAO.get(i+1);
                     m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
-                    dt=DateTime.now(DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT-5:00")));
-                    if(m!=null){//existe registro para alumno y curso en matricula
-                        m.setIdSeccion(Integer.parseInt(rb));//modificar
-                        m.setHoramatricula(dt.getHourOfDay());
-                        mDAO.update(m);
-                        //Registro de Matricula Modificado
-                    }
-                    else{//NO existe registro para Curso y Alumno
-                        m=new Matricula();
-                        m.setHoramatricula(dt.getHourOfDay());
-                        m.setFechamatricula(dt.toDate());
-                        m.setIdCurso(i+1);
-                        m.setIdSeccion(Integer.parseInt(rb));
-                        m.setIdAlumno(usuario.getIdAlumno());
-                        mDAO.save(m);
-                        //Registro de Matricula Insertado
+                    if(m!=null){//si alumno está registrado en curso
+                        mDAO.delete(m);
+                        //Registro de Matricula Eliminado
+                        modificado=true;
                     }
                 }
             }
-            else{//No check curso -- Eliminar
-                Curso c=cDAO.get(i+1);
-                m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
-                if(m!=null){//si alumno está registrado en curso
-                    mDAO.delete(m);
-                    //Registro de Matricula Eliminado
-                }
-            }
+        
+        }
+        catch(Exception e){
+            response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
+            e.printStackTrace();
         }
         
-        
-       
-        
-        /*
-        String sMotivoApertura=request.getParameter("MotivoApertura");
-        String sCodigoCurso=request.getParameter("CodigoCurso");
-        if(sMotivoApertura.trim().equals("") || sCodigoCurso.trim().equals("")){
-
-
-            response.sendRedirect("SolicitarApertura.jsp?eee="+2);
+        if(modificado){
+            response.sendRedirect("PrincipalAlumno.jsp?eee="+1);
         }
         else{
-
-            SolicitudDAO solicitudDAO = context.getBean(SolicitudDAO.class);
-
-            Solicitud solicitud=new Solicitud();
-
-            HttpSession sesion=request.getSession();
-
-            UsuarioBean usuario=(UsuarioBean)sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
-
-            solicitud.setIdAlumno(usuario.getIdAlumno());
-            solicitud.setMotivo(request.getParameter("MotivoApertura"));
-
-            try{
-
-                solicitudDAO.save(solicitud);
-
-            }
-            catch(Exception e)
-            {
-
-                response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                e.printStackTrace();
-
-            }
-
-            response.sendRedirect("SolicitarApertura.jsp?eee="+1);
-
+            response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
         }
-        */
+        
     }
     
     

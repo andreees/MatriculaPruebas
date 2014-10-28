@@ -53,7 +53,7 @@
                                     <label for="CodigoCurso">Curso</label>
                                 </td>
                                 <td>
-                                    <select name="CodigoCurso" required="true">
+                                    <select name="CodigoCurso">
                                         <%
                                             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                                             List<Curso> listCursos = new ArrayList<Curso>();
@@ -74,12 +74,13 @@
                                     <label for="MotivoApertura">Motivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </td>
                                 <td>
-                                    <textarea name="MotivoApertura" rows="6" cols="100" required="true"></textarea>
+                                    <textarea name="MotivoApertura" rows="6" cols="100"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar Solicitud" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar Solicitud" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Ir a Matricula" formaction="PrincipalAlumno.jsp" /></td>
                             </tr>
                         </table>
                     </form>
@@ -93,7 +94,7 @@
                     else if(Exito==2){
                     %>
                         <!-- NotSuccess -->
-                        <div class="notice warning"><i class="icon-remove icon-large"></i> La solicitud es invalida 
+                        <div class="notice warning"><i class="icon-remove icon-large"></i> La solicitud es invalida, seleccione un curso e ingrese un motivo 
                         <a href="#close" class="icon-remove"></a></div>
                     <%
                     }

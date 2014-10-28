@@ -109,22 +109,21 @@ public class UsuarioDAOImp implements UsuarioDAO {
     }
 
     public Usuario iniciarSesion(String pUsuario, String pClave) {
-        Usuario usuario = null;
+        List<Usuario> lista = null;
         try {
-            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-            List<Usuario> listUsuarios = new ArrayList<Usuario>();
-            UsuarioDAO uDAO = context.getBean(UsuarioDAO.class);
-            listUsuarios = uDAO.list();
-            for (Usuario user : listUsuarios) {
-                if (pUsuario.equals(user.getUsuario()) && pClave.equals(user.getClave())) {
-                    usuario = user;
-                    break;
-                }
-            }
+            Session session = this.sessionFactory.openSession();
+            lista = session.createQuery("from Usuario u where u.usuario='"+pUsuario+"' and u.clave='"+pClave+"'").list();
+            session.close();
+            
         } catch (Exception e) {
             LOGGER.error("Sorry, something wrong!", e);
         }
-        return usuario;
+        if(lista.size()>0){
+            return lista.get(0);
+        }
+        else{
+            return null;
+        }
     }
 
 }
