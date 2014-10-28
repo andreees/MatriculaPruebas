@@ -52,6 +52,24 @@ public class MatriculaDAOImp implements MatriculaDAO{
 	return lista;
     }
 
+    public Matricula getXIdCursoXIdAlumno(int idCurso,int idAlumno) {
+         List<Matricula> lista = null;
+        
+        try {
+          Session session = this.sessionFactory.openSession();
+          lista = session.createQuery("from Matricula where idcurso="+idCurso+" and idalumno="+idAlumno+" and fechamatricula=CURDATE()").list();
+          session.close();
+          
+            
+        } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
+        }
+        if(lista.size()>0)
+            return lista.get(0);
+        else
+            return null;
+    }
+    
     public boolean update(Matricula matricula) {
         try {
             Session session = this.sessionFactory.openSession();
