@@ -1,8 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    
-    UsuarioBean usuarioBean;
+<%    UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
     if (sesion == null) {
         response.sendRedirect("index.jsp");
@@ -23,6 +22,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
+        <script>
+            $(document).ready(function() {
+                $("#menu_cursos").addClass("current");
+                $("#menu_secciones").removeClass("current");
+            });
+        </script>
     </head>
     <body>
         <%

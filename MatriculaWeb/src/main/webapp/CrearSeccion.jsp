@@ -34,6 +34,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
+        <script>
+            $(document).ready(function() {
+                $("#menu_cursos").removeClass("current");
+                $("#menu_secciones").addClass("current");
+            });
+        </script>
     </head>
     <body>
         <div id="Contenedor">
@@ -66,7 +72,7 @@
                             <td><%= curso.getNombre()%></td>
                             <td><%= curso.getRequisitos()%></td>
                             <td><%= curso.getCiclo()%></td>
-                            <td><a href="#"><img src="#" alt="Agregar"></a></td>
+                            <td><a href="CrearSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-plus"></i></a></td>
                         </tr>                    
                         <%
                             }

@@ -1,14 +1,12 @@
 <%-- 
-    Document   : EliminarSeccion
-    Created on : 20/10/2014, 03:39:37 PM
+    Document   : ModificarSeccion4
+    Created on : 27/10/2014, 06:16:57 PM
     Author     : Roy Taza Rojas
 --%>
 
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
-<%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%    
     UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
@@ -26,8 +24,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        
+        <title>Secciones - Modificar</title>
+        <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
+        <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
         <script>
             $(document).ready(function() {
                 $("#menu_cursos").removeClass("current");
@@ -36,7 +37,22 @@
         </script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div id="Contenedor">
+            <%@include file="template/CabeceraT.jsp" %>
+            <%@include file="template/MenuLateralT.jsp" %>
+            <div id="ContenidoCentral">
+                <h3 id="MensajeBienvenida">Modificar Seccion</h3><br>
+                <%
+                    if (request.getParameter("mensaje") != null) {
+                        if (request.getParameter("mensaje").equalsIgnoreCase("success")) {
+                %>
+                <p id="mensajeConfirmacion" style="margin-left: 25px">La secci&oacute;n ha sido modificada correctamente.</p>
+                <%
+                        }
+                    }
+                %>
+            </div>
+        </div>
     </body>
 </html>
 <%

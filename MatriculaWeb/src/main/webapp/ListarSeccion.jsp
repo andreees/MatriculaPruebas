@@ -34,6 +34,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
+        <script>
+            $(document).ready(function() {
+                $("#menu_cursos").removeClass("current");
+                $("#menu_secciones").addClass("current");
+            });
+        </script>
     </head>
     <body>
         <div id="Contenedor">
@@ -47,42 +53,32 @@
                 <table class="sortable">
                     <thead>
                         <tr>
-                            <th>Seccion</th>
+                            <th>Codigo</th>
+                            <th>Profesor</th>
                             <th>Curso</th>
                         </tr>
                     </thead>
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                         List<Curso> listCursos = new ArrayList<Curso>();
-                        List<Clase> listClases = new ArrayList<Clase>();
                         List<Seccion> listSeccions = new ArrayList<Seccion>();
                         CursoDAO cursoDAO = context.getBean(CursoDAO.class);
                         ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
                         SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
                         listCursos = cursoDAO.list();
                         listSeccions = seccionDAO.list();
-                        for (Clase clase : listClases) {
+                        for (Seccion seccion : listSeccions) {
                     %>
                     <tbody>
                         <tr>
+                            <td><%= seccion.getCodigo()%></td>
+                            <td><%= seccion.getProfesor()%></td>
                             <td>
                                 <%
                                     for (Curso curso : listCursos) {
-                                        if (clase.getIdCurso() == curso.getIdCurso()) {
+                                        if (curso.getIdCurso() == seccion.getIdcurso()) {
                                 %>
-                                <%= curso.getNombre()%>
-                                <%
-                                            break;
-                                        }
-                                    }
-                                %>
-                            </td>
-                            <td>
-                                <%
-                                    for (Seccion seccion : listSeccions) {
-                                        if (clase.getIdSeccion() == seccion.getIdSeccion()) {
-                                %>
-                                <%= seccion.getCodigo()%>
+                                <%= curso.getCodigo()%> - <%= curso.getNombre()%>
                                 <%
                                             break;
                                         }
