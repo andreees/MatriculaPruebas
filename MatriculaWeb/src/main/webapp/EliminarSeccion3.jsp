@@ -41,7 +41,7 @@
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Modificar Seccion</h3><br>
+                <h3 id="MensajeBienvenida">Eliminar Seccion</h3><br>
                 <%
                     if (request.getParameter("mensaje") != null) {
                         if (request.getParameter("mensaje").equalsIgnoreCase("success")) {

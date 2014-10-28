@@ -55,62 +55,40 @@
                             <th>Curso</th>
                             <th>Codigo Seccion</th>
                             <th>Profesor</th>
-                            <th>Dias de clase</th>
                         </tr>
                     </thead>
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                         List<Curso> listCursos = new ArrayList<Curso>();
                         List<Seccion> listSeccions = new ArrayList<Seccion>();
-                        List<Clase> listClases = new ArrayList<Clase>();
                         CursoDAO cursoDAO = context.getBean(CursoDAO.class);
-                        ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
                         SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
                         listCursos = cursoDAO.list();
-                        listSeccions = seccionDAO.list();
                         String aux = "";
                         for (Curso curso : listCursos) {
                     %>
                     <tbody>
+
+
+                        <%
+                            listSeccions = seccionDAO.listXIdCurso(curso.getIdCurso());
+                            if (listSeccions.size() > 0) {
+                                aux = "";
+                                for (Seccion seccion : listSeccions) {
+                                    if (!aux.equalsIgnoreCase(seccion.getCodigo())) {
+                        %>
                         <tr>
                             <td><%= curso.getCodigo()%> - <%= curso.getNombre()%></td>
-                            <%
-                                listSeccions = seccionDAO.listXIdCurso(curso.getIdCurso());
-                                if (listSeccions.size() > 0) {
-                                    aux = "";
-                                    for (Seccion seccion : listSeccions) {
-                                        if (!aux.equalsIgnoreCase(seccion.getCodigo())) {
-                            %>
                             <td><%= seccion.getCodigo()%></td>
                             <td><%= seccion.getProfesor()%></td>
-                            <td>
-                                <%
-                                    }
-                                    aux = seccion.getCodigo();
-                                    listClases = claseDAO.listXIdSeccion(seccion.getIdSeccion());
-                                %>
-
-                                <%
-                                    int aid = 0;
-                                    for (Clase clase : listClases) {
-                                %>
-                                <%= clase.getDia()%>(<%= clase.getHoraInicio()%> - <%= clase.getHoraFin()%>) &nbsp; 
-                                <%
+                        </tr>
+                        <%
                                         }
-                                    }
-                                %>
-                            </td>
-                            <%
-                            } else {
-                            %>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                            <td>- - -</td>
-                            <%
+                                        aux = seccion.getCodigo();
                                     }
                                 }
-                            %>
-                        </tr>
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>

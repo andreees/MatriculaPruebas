@@ -82,15 +82,15 @@
                         <tbody>
                             <tr>
                                 <td>Codigo de Seccion: </td>
-                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="<%= seccion.getCodigo()%>" maxlength="50"></td>
+                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="<%= seccion.getCodigo()%>" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Profesor: </td>
-                                <td><input id="txtProfesor" type="text" name="txtProfesor" value="<%= seccion.getProfesor()%>" maxlength="50"></td>
+                                <td><input id="txtProfesor" type="text" name="txtProfesor" value="<%= seccion.getProfesor()%>" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Salon: </td>
-                                <td><input id="txtSalon" type="text" name="txtSalon" value="<%= clase.getCodigo()%>" maxlength="50"></td>
+                                <td><input id="txtSalon" type="text" name="txtSalon" value="<%= clase.getCodigo()%>" maxlength="50" required></td>
                             </tr>
                             <tr>
                                 <td>Dia: </td>
@@ -108,11 +108,11 @@
                             </tr>
                             <tr>
                                 <td>Hora Inicio: </td>
-                                <td><input id="txtHoraInicio" type="number" name="txtHoraInicio" value="<%= clase.getHoraInicio()%>" min="7" max="23"></td>
+                                <td><input id="txtHoraInicio" type="number" name="txtHoraInicio" value="<%= clase.getHoraInicio()%>" min="7" max="23" required></td>
                             </tr>
                             <tr>
                                 <td>Hora Fin </td>
-                                <td><input id="txtHoraFin" type="number" name="txtHoraFin" value="<%= clase.getHoraFin()%>" min="7" max="23"></td>
+                                <td><input id="txtHoraFin" type="number" name="txtHoraFin" value="<%= clase.getHoraFin()%>" min="7" max="23" required></td>
                             </tr>
                             <tr>
                                 <td>Tipo de clase: </td>

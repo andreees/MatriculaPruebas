@@ -16,7 +16,8 @@
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%    UsuarioBean usuarioBean;
+<%    
+    UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
     if (sesion == null) {
         response.sendRedirect("index.jsp");
@@ -93,7 +94,8 @@
                             <td><%= clase.getHoraInicio()%></td>
                             <td><%= clase.getHoraFin()%></td>
                             <td><%= clase.getTipoClase()%></td>
-                            <td><a href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>"><i class="icon-ban-circle"></i></a></td>
+                            <td><a id="lnkEliminarSeccion" href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>" onclick="if (!confirm('¿Esta seguro que desea eliminar desea eliminar esta seccion?'))
+                                        return false"><i class="icon-remove"></i></a></td>
                         </tr>
                         <%
                                 }
