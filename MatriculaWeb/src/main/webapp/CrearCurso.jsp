@@ -47,7 +47,7 @@
                                     <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: Lenguaje1)</span></label>
                                 </td>
                                 <td>
-                                    <input id="txtNombre" name="txtNombre" required="" type="text" />
+                                    <input id="txtNombre" name="txtNombre" required type="text" maxlength="100" />
                                 </td>
                             </tr>
                             <tr>
@@ -55,7 +55,7 @@
                                     <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU23)</span></label>
                                 </td>
                                 <td>
-                                    <input id="txtCodigo" name="txtCodigo" required="" type="text" />
+                                    <input id="txtCodigo" name="txtCodigo" required type="text" maxlength="5"/>
                                 </td>
                             </tr>
                             <tr>
@@ -63,7 +63,7 @@
                                     <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 3)</span></label>
                                 </td>
                                 <td>
-                                    <input id="txtCreditos" name="txtCreditos" required="" type="number" />
+                                    <input id="txtCreditos" name="txtCreditos" required type="number" min="1" max="6" />
                                 </td>
                             </tr>
                             <tr>
@@ -71,7 +71,7 @@
                                     <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU20)</span></label>
                                 </td>
                                 <td>
-                                    <input id="txtRequisitos" name="txtRequisitos" required="" type="text" />
+                                    <input id="txtRequisitos" name="txtRequisitos" required type="text" maxlength="100" />
                                 </td>
                             </tr>
                             <tr>
@@ -79,7 +79,7 @@
                                     <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 2)</span></label>
                                 </td>
                                 <td>
-                                    <input id="txtCiclo" name="txtCiclo" required="" type="number" />
+                                    <input id="txtCiclo" name="txtCiclo" required="" type="number" min="1" max="10" />
                                 </td>
                             </tr>
                             <tr>

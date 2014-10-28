@@ -57,7 +57,7 @@
                                     <label for="txtNombre">Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: Lenguaje1)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtNombre" type="text" required="" value="<%=curso.getNombre()%>"/>
+                                    <input name="txtNombre" type="text" required maxlength="100" value="<%=curso.getNombre()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                                     <label for="txtCodigo">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU23)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCodigo" type="text" required="" value="<%=curso.getCodigo()%>"/>
+                                    <input name="txtCodigo" maxlength="5" type="text" required value="<%=curso.getCodigo()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -73,7 +73,7 @@
                                     <label for="txtCreditos">Creditos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 3)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCreditos" type="number" required="" value="<%=curso.getCreditos()%>"/>
+                                    <input name="txtCreditos" min="1" max="6" type="number" required value="<%=curso.getCreditos()%> "/>
                                 </td>
                             </tr>
                             <tr>
@@ -81,7 +81,7 @@
                                     <label for="txtRequisitos">Requisitos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: HU20)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtRequisitos" required="" type="text" value="<%=curso.getRequisitos()%>"/>
+                                    <input name="txtRequisitos" required="" maxlength="100" type="text" value="<%=curso.getRequisitos()%>"/>
                                 </td>
                             </tr>
                             <tr>
@@ -89,7 +89,7 @@
                                     <label for="txtCiclo">Ciclo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(Ej: 2)</span></label>
                                 </td>
                                 <td>
-                                    <input name="txtCiclo" type="number" required="" value="<%=curso.getCiclo()%>"/>
+                                    <input name="txtCiclo" min="1" max="10" type="number" required="" value="<%=curso.getCiclo()%>"/>
                                 </td>
                             </tr>
                             <tr>
