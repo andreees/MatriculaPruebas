@@ -72,7 +72,7 @@
                             <td><%= curso.getNombre()%></td>
                             <td><%= curso.getRequisitos()%></td>
                             <td><%= curso.getCiclo()%></td>
-                            <td><a href="CrearSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-plus"></i></a></td>
+                            <td><a id="linkCrearSeccion" href="CrearSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-plus"></i></a></td>
                         </tr>                    
                         <%
                             }
