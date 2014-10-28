@@ -33,13 +33,13 @@
             String sIdCurso = request.getParameter("idCurso");
             String sIdSeccion = request.getParameter("idSeccion");
             String sIdClase = request.getParameter("idClase");
-            
+
             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-            
+
             CursoDAO cursoDAO = context.getBean(CursoDAO.class);
             SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
             ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
-            
+
             Curso curso = cursoDAO.get(Integer.parseInt(sIdCurso));
             Seccion seccion = seccionDAO.get(Integer.parseInt(sIdSeccion));
             Clase clase = claseDAO.get(Integer.parseInt(sIdClase));
@@ -81,8 +81,16 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>Codigo de Seccion: </td>
+                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="<%= seccion.getCodigo()%>" maxlength="50"></td>
+                            </tr>
+                            <tr>
                                 <td>Profesor: </td>
                                 <td><input id="txtProfesor" type="text" name="txtProfesor" value="<%= seccion.getProfesor()%>" maxlength="50"></td>
+                            </tr>
+                            <tr>
+                                <td>Salon: </td>
+                                <td><input id="txtSalon" type="text" name="txtSalon" value="<%= clase.getCodigo()%>" maxlength="50"></td>
                             </tr>
                             <tr>
                                 <td>Dia: </td>

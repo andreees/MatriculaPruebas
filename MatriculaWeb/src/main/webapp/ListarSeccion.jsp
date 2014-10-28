@@ -12,8 +12,7 @@
 <%@page import="pe.com.core.model.*"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    
-    UsuarioBean usuarioBean;
+<%    UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
     if (sesion == null) {
         response.sendRedirect("index.jsp");
@@ -53,42 +52,65 @@
                 <table class="sortable">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Profesor</th>
                             <th>Curso</th>
+                            <th>Codigo Seccion</th>
+                            <th>Profesor</th>
+                            <th>Dias de clase</th>
                         </tr>
                     </thead>
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                         List<Curso> listCursos = new ArrayList<Curso>();
                         List<Seccion> listSeccions = new ArrayList<Seccion>();
+                        List<Clase> listClases = new ArrayList<Clase>();
                         CursoDAO cursoDAO = context.getBean(CursoDAO.class);
                         ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
                         SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
                         listCursos = cursoDAO.list();
                         listSeccions = seccionDAO.list();
-                        for (Seccion seccion : listSeccions) {
+                        String aux = "";
+                        for (Curso curso : listCursos) {
                     %>
                     <tbody>
                         <tr>
+                            <td><%= curso.getCodigo()%> - <%= curso.getNombre()%></td>
+                            <%
+                                listSeccions = seccionDAO.listXIdCurso(curso.getIdCurso());
+                                if (listSeccions.size() > 0) {
+                                    aux = "";
+                                    for (Seccion seccion : listSeccions) {
+                                        if (!aux.equalsIgnoreCase(seccion.getCodigo())) {
+                            %>
                             <td><%= seccion.getCodigo()%></td>
                             <td><%= seccion.getProfesor()%></td>
                             <td>
                                 <%
-                                    for (Curso curso : listCursos) {
-                                        if (curso.getIdCurso() == seccion.getIdcurso()) {
+                                    }
+                                    aux = seccion.getCodigo();
+                                    listClases = claseDAO.listXIdSeccion(seccion.getIdSeccion());
                                 %>
-                                <%= curso.getCodigo()%> - <%= curso.getNombre()%>
+
                                 <%
-                                            break;
+                                    int aid = 0;
+                                    for (Clase clase : listClases) {
+                                %>
+                                <%= clase.getDia()%>(<%= clase.getHoraInicio()%> - <%= clase.getHoraFin()%>) &nbsp; 
+                                <%
                                         }
                                     }
                                 %>
                             </td>
-                        </tr>                    
-                        <%
-                            }
-                        %>
+                            <%
+                            } else {
+                            %>
+                            <td>- - -</td>
+                            <td>- - -</td>
+                            <td>- - -</td>
+                            <%
+                                    }
+                                }
+                            %>
+                        </tr>
                     </tbody>
                 </table>
             </div>

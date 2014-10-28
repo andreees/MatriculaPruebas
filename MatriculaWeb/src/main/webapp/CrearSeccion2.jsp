@@ -70,8 +70,16 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>Codigo de Seccion: </td>
+                                <td><input id="txtCodigoSeccion" type="text" name="txtCodigoSeccion" value="" maxlength="50"></td>
+                            </tr>
+                            <tr>
                                 <td>Profesor: </td>
                                 <td><input id="txtProfesor" type="text" name="txtProfesor" value="" maxlength="50"></td>
+                            </tr>
+                            <tr>
+                                <td>Salon: </td>
+                                <td><input id="txtSalon" type="text" name="txtSalon" value="" maxlength="50"></td>
                             </tr>
                             <tr>
                                 <td>Dia: </td>

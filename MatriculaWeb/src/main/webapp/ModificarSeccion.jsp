@@ -58,7 +58,7 @@
                             <th>Curso</th>
                             <th>Requisitos</th>
                             <th>Ciclo</th>
-                            <th>Modificar</th>
+                            <th>Seleccionar</th>
                         </tr>
                     </thead>
                     <%
@@ -74,7 +74,7 @@
                             <td><%= curso.getNombre()%></td>
                             <td><%= curso.getRequisitos()%></td>
                             <td><%= curso.getCiclo()%></td>
-                            <td><a href="ModificarSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-edit"></i></a></td>
+                            <td><a href="ModificarSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-check"></i></a></td>
                         </tr>                    
                         <%
                             }
