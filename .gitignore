@@ -45,10 +45,3 @@ Temporary Items
 /MatriculaWeb/target/
 /MatriculaCore/target/
 MatriculaCore/src/main/resources/spring.xml
-MatriculaCore/src/main/java/pe/com/core/dao/MatriculaDAO.java
-MatriculaCore/src/main/java/pe/com/core/dao/MatriculaDAOImp.java
-MatriculaWeb/pom.xml
-MatriculaWeb/src/main/java/pe/com/web/matriculaweb/RegistrarMatriculaS.java
-MatriculaWeb/src/main/webapp/PrincipalAlumno.jsp
-MatriculaWeb/src/main/webapp/SolicitarApertura.jsp
-MatriculaWeb/src/main/webapp/template/CabeceraT.jsp
