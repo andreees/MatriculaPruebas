@@ -28,7 +28,7 @@ import pe.com.core.model.Seccion;
  */
 @Test
 public class SeccionTest {
-
+/*
     private Selenium selenium;
 
     @BeforeClass
@@ -174,9 +174,9 @@ public class SeccionTest {
         }
         Assert.fail();
 
-    }
+    }hasta aca*/
 
-    
+    /*
     @Test
     public void ModificarCurso_Valido() {
 

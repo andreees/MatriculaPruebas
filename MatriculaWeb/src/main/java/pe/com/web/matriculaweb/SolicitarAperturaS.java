@@ -58,8 +58,9 @@ public class SolicitarAperturaS extends HttpServlet {
                         solicitudDAO.save(solicitud);
                    
                     }catch(Exception e){
-                        response.sendRedirect("SolicitarApertura.jsp?eee="+2);
                         LOGGER.error("Sorry, something wrong!", e);
+                        response.sendRedirect("SolicitarApertura.jsp?eee="+2);
+                        
                         
                     }
                     

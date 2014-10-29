@@ -15,6 +15,7 @@ import pe.com.core.model.Curso;
 
 @Test
 public class CursoTest {
+    /*
     private Selenium selenium;
     
     @BeforeClass
@@ -203,7 +204,7 @@ public class CursoTest {
             }
         }
         Assert.fail();
-    }
+    }hasta aca*/
     
 //    @Test(priority = 6)
 //    public void EliminarCurso_Valido(){
