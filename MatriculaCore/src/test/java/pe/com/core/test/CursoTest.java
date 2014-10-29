@@ -5,6 +5,10 @@ import com.thoughtworks.selenium.Selenium;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -23,9 +27,8 @@ public class CursoTest {
                 "http://localhost:8080/");
         selenium.start();
     }
-    
-    
-    @Test
+        
+    @Test(priority = 2)
     public void ListarCurso_Valido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -45,7 +48,7 @@ public class CursoTest {
         
     }
     
-    @Test
+    @Test(priority = 0)
     public void ListarCurso_Invalido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -65,7 +68,7 @@ public class CursoTest {
         
     }
     
-    @Test
+    @Test(priority = 1)
     public void CrearCurso_Valido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -99,7 +102,7 @@ public class CursoTest {
         }
     }
     
-    @Test
+    @Test(priority = 3)
     public void CrearCurso_Invalido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -139,7 +142,7 @@ public class CursoTest {
         
     }
     
-    @Test
+    @Test(priority = 4)
     public void ModificarCurso_Valido(){
         
         //Leer de excel la data
@@ -165,7 +168,7 @@ public class CursoTest {
         }
     }
     
-    @Test
+    @Test(priority = 5)
     public void ModificarCurso_Invalido(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
@@ -206,30 +209,30 @@ public class CursoTest {
         Assert.fail();
     }
     
-    @Test
-    public void EliminarCurso_Valido(){
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
-        
-        int cantidadDeCursosAlInicio,cantidadDeCursosAlFinal;
-        
-        List<Curso> lista;
-        lista = new ArrayList<Curso>();
-        lista=cursoDAO.list();
-        cantidadDeCursosAlInicio = lista.size();
-        
-        selenium.open("/MatriculaWeb/index.jsp");
-        selenium.type("txtUsuario", "epalomino");
-        selenium.type("txtClave", "eduardo");
-        selenium.click("btnIniciarSesion");
-        selenium.waitForPageToLoad("30000");
-        selenium.open("/MatriculaWeb/EliminarCurso.jsp");
-        selenium.click("linkEliminarCurso");
-        selenium.waitForPageToLoad("30000");
-
-        cantidadDeCursosAlFinal = cursoDAO.list().size();
-        Assert.assertTrue(cantidadDeCursosAlFinal<cantidadDeCursosAlInicio);
-        
-    }
+//    @Test(priority = 6)
+//    public void EliminarCurso_Valido(){
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+//	CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+//        
+//        int cantidadDeCursosAlInicio,cantidadDeCursosAlFinal;
+//        
+//        List<Curso> lista;
+//        lista = new ArrayList<Curso>();
+//        lista=cursoDAO.list();
+//        cantidadDeCursosAlInicio = lista.size();
+//        
+//        selenium.open("/MatriculaWeb/index.jsp");
+//        selenium.type("txtUsuario", "epalomino");
+//        selenium.type("txtClave", "eduardo");
+//        selenium.click("btnIniciarSesion");
+//        selenium.waitForPageToLoad("30000");
+//        selenium.open("/MatriculaWeb/EliminarCurso.jsp");
+//        selenium.click("linkEliminarCurso");
+//        selenium.waitForPageToLoad("30000");
+//
+//        cantidadDeCursosAlFinal = cursoDAO.list().size();
+//        Assert.assertTrue(cantidadDeCursosAlFinal==cantidadDeCursosAlInicio-1);
+//        
+//    }
     
 }

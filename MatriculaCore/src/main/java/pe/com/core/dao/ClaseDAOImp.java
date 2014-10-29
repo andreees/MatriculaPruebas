@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import pe.com.core.model.Clase;
 import org.apache.log4j.Logger;
+
 /**
  *
  * @author zcrome
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 public class ClaseDAOImp implements ClaseDAO{
     
     private SessionFactory sessionFactory;
+
     private final static Logger LOGGER = Logger.getLogger(ClaseDAOImp.class);    
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -33,6 +35,7 @@ public class ClaseDAOImp implements ClaseDAO{
             session.close();
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
         }
     }
@@ -47,6 +50,7 @@ public class ClaseDAOImp implements ClaseDAO{
           
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
           }
 	return lista;
@@ -61,7 +65,9 @@ public class ClaseDAOImp implements ClaseDAO{
           
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
+
           }
 	return lista;
     }
@@ -76,7 +82,9 @@ public class ClaseDAOImp implements ClaseDAO{
             
         } catch (Exception e) {
             
+
             LOGGER.error("Sorry, something wrong!", e);
+
             return false;
         }
         
@@ -93,7 +101,9 @@ public class ClaseDAOImp implements ClaseDAO{
             
         } catch (Exception e) {
             
+
             LOGGER.error("Sorry, something wrong!", e);
+
             return false;
         }
         
@@ -115,7 +125,9 @@ public class ClaseDAOImp implements ClaseDAO{
             
         } catch (Exception e) {
             
+
             LOGGER.error("Sorry, something wrong!", e);
+
             
         }
         return clase;   

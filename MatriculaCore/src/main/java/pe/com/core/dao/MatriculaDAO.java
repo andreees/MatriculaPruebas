@@ -18,6 +18,8 @@ public interface MatriculaDAO {
 	
 	public List<Matricula> list();
         
+        public Matricula getXIdCursoXIdAlumno(int idCurso,int idAlumno);
+        
         public boolean update(Matricula matricula);
         
         public boolean delete (Matricula matricula);

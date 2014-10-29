@@ -1,7 +1,13 @@
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package pe.com.core.model;
-import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +33,15 @@ public class Clase {
     private int idSeccion;
 
     public Clase() {
+    }
+    
+    public Clase(int idClase, String dia, int horaInicio, int horaFin, String tipoClase, int idSeccion) {
+        this.idClase = idClase;
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.tipoClase = tipoClase;
+        this.idSeccion = idSeccion;
     }
 
     public int getIdClase() {

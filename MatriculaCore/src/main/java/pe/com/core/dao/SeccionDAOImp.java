@@ -9,8 +9,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import pe.com.core.model.Seccion;
 import org.apache.log4j.Logger;
+
 
 /**
  *
@@ -36,7 +38,9 @@ public class SeccionDAOImp implements SeccionDAO {
             session.close();
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
+
         }
         
     }
@@ -52,7 +56,9 @@ public class SeccionDAOImp implements SeccionDAO {
           
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
+
           }
 	return lista;
     }
@@ -68,7 +74,9 @@ public class SeccionDAOImp implements SeccionDAO {
           
             
         } catch (Exception e) {
+
             LOGGER.error("Sorry, something wrong!", e);
+
         }
 	return lista;
     }
@@ -85,7 +93,9 @@ public class SeccionDAOImp implements SeccionDAO {
             
         } catch (Exception e) {
             
+
             LOGGER.error("Sorry, something wrong!", e);
+
             return false;
         }
         
@@ -104,7 +114,9 @@ public class SeccionDAOImp implements SeccionDAO {
             
         } catch (Exception e) {
             
+
             LOGGER.error("Sorry, something wrong!", e);
+
             return false;
         }
         
@@ -125,10 +137,30 @@ public class SeccionDAOImp implements SeccionDAO {
             tx.commit();
             session.close();
             
+
         } catch (Exception e) {            
             LOGGER.error("Sorry, something wrong!", e);            
+
         }
         return seccion;        
     }
         
+    public int saveAndReturnId(Seccion s) {
+        int idSeccion = 0;
+        try {
+            Session session = this.sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.persist(s);
+            tx.commit();
+            session.close();
+            idSeccion = s.getIdSeccion();
+        } catch (Exception e) {
+
+            LOGGER.error("Sorry, something wrong!", e);
+
+        }
+        return idSeccion;
+        
+    }
+
 }
