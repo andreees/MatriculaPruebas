@@ -123,7 +123,7 @@ public class SeccionTest {
     }
 
     @Test
-    public void CrearCurso_Invalido() {
+    public void CrearSeccion_Invalido() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
         ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
