@@ -8,7 +8,7 @@ package pe.com.web.matriculaweb.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author Roy
@@ -16,12 +16,13 @@ import java.security.NoSuchAlgorithmException;
 public final class Encryptor {
 
     private static MessageDigest digester;
-
+    private final static Logger LOGGER = Logger.getLogger(Encryptor.class);
+    
     static {
         try {
             digester = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
     }
 

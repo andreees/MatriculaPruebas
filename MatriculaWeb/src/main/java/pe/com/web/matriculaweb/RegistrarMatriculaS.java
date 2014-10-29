@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pe.com.core.dao.CursoDAO;
 import pe.com.core.dao.MatriculaDAO;
@@ -34,6 +35,7 @@ import org.joda.time.DateTimeZone;
  */
 @WebServlet(name = "RegistrarMatriculaS", urlPatterns = {"/RegistrarMatriculaS"})
 public class RegistrarMatriculaS extends HttpServlet{
+    private final static Logger LOGGER = Logger.getLogger(RegistrarMatriculaS.class);
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -97,7 +99,7 @@ public class RegistrarMatriculaS extends HttpServlet{
         }
         catch(Exception e){
             response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
-            e.printStackTrace();
+            LOGGER.error("Sorry, something wrong!", e);
         }
         
         if(modificado){

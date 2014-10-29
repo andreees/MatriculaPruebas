@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pe.com.core.dao.*;
@@ -16,7 +17,8 @@ import pe.com.web.matriculaweb.util.ConstantesWeb;
 
 @WebServlet(name = "SolicitarAperturaS", urlPatterns = {"/SolicitarAperturaS"})
 public class SolicitarAperturaS extends HttpServlet {
-
+    
+    private final static Logger LOGGER = Logger.getLogger(SolicitarAperturaS.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -59,9 +61,8 @@ public class SolicitarAperturaS extends HttpServlet {
                     }
                     catch(Exception e)
                     {
-                        
                         response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                        e.printStackTrace();
+                        LOGGER.error("Sorry, something wrong!", e);
                         
                     }
                     
