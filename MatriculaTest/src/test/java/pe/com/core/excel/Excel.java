@@ -82,4 +82,76 @@ public class Excel {
         }
         return lista;
     }
+    
+    public List<List<String>> leer_CrearSeccion(){
+        List<List<String>> lista;
+        lista = new ArrayList<List<String>>();
+        try{
+            FileInputStream archivo = new FileInputStream(new File("C:\\Documents and Settings\\pruebas\\My Documents\\NetBeansProjects\\MatriculaPruebas\\Documentos\\DatosParaMatricula.xls"));
+            //Archivo en excel
+            HSSFWorkbook archivoExcel = new HSSFWorkbook(archivo);
+            //Con que hoja de excel voy a trabajar
+            HSSFSheet hojaExcel = archivoExcel.getSheetAt(4);
+            //Obtener las filas
+            Iterator<Row> filas = hojaExcel.iterator();
+            //Pasar a leer la segunda fila
+            filas.next();
+            
+            while(filas.hasNext()){
+                int cont=0;
+                List<String> listaInterna= new ArrayList<String>();
+                Row fila = filas.next();
+                Iterator<Cell> celdas = fila.cellIterator();
+                while(celdas.hasNext()){
+                    Cell celda = celdas.next();
+                    if(cont==4 || cont==5){
+                        listaInterna.add(new String(String.valueOf((int)celda.getNumericCellValue())));
+                    }else{
+                        listaInterna.add(new String(celda.getStringCellValue()));
+                    }
+                    cont++;                        
+                }
+                lista.add(listaInterna);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }
+       
+    public List<List<String>> leer_ModificarSeccion(){
+        List<List<String>> lista;
+        lista = new ArrayList<List<String>>();
+        try{
+            FileInputStream archivo = new FileInputStream(new File("C:\\Documents and Settings\\pruebas\\My Documents\\NetBeansProjects\\MatriculaPruebas\\Documentos\\DatosParaMatricula.xls"));
+            //Archivo en excel
+            HSSFWorkbook archivoExcel = new HSSFWorkbook(archivo);
+            //Con que hoja de excel voy a trabajar
+            HSSFSheet hojaExcel = archivoExcel.getSheetAt(5);
+            //Obtener las filas
+            Iterator<Row> filas = hojaExcel.iterator();
+            //Pasar a leer la segunda fila
+            filas.next();
+            
+            while(filas.hasNext()){
+                int cont=0;
+                List<String> listaInterna= new ArrayList<String>();
+                Row fila = filas.next();
+                Iterator<Cell> celdas = fila.cellIterator();
+                while(celdas.hasNext()){
+                    Cell celda = celdas.next();
+                    if(cont==4 || cont==5){
+                        listaInterna.add(new String(String.valueOf((int)celda.getNumericCellValue())));
+                    }else{
+                        listaInterna.add(new String(celda.getStringCellValue()));
+                    }
+                    cont++;                        
+                }
+                lista.add(listaInterna);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

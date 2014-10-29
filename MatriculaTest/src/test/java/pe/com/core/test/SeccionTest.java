@@ -15,11 +15,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pe.com.core.dao.ClaseDAO;
-import pe.com.core.dao.CursoDAO;
-import pe.com.core.dao.SeccionDAO;
 import pe.com.core.excel.Excel;
+import pe.com.core.dao.SeccionDAO;
 import pe.com.core.model.Clase;
-import pe.com.core.model.Curso;
 import pe.com.core.model.Seccion;
 
 /**
@@ -28,11 +26,10 @@ import pe.com.core.model.Seccion;
  */
 @Test
 public class SeccionTest {
-/*
-    private Selenium selenium;
-/*
+
     private Selenium selenium;
 
+    /*
     @BeforeClass
     public void inicioClase() throws Exception {
         selenium = new DefaultSelenium("localhost", 4441, "firefox",
@@ -98,9 +95,7 @@ public class SeccionTest {
         cantidadDeClasesAlInicio = listaClase.size();
 
         //Leer de excel la data
-        /////////////////////////////////////////////7
-        List<List<String>> data = new Excel().leer_CrearCurso();
-        /////////////////////////////////////////////7
+        List<List<String>> data = new Excel().leer_CrearSeccion();
         for (List<String> listainterna : data) {
             selenium.open("/MatriculaWeb/index.jsp");
             selenium.type("txtUsuario", "epalomino");
@@ -176,68 +171,85 @@ public class SeccionTest {
         }
         Assert.fail();
 
-    }hasta aca*/
+    }
 
-    /*
     @Test
-    public void ModificarCurso_Valido() {
+    public void ModificarSeccion_Valido() {
 
         //Leer de excel la data
-        List<List<String>> data = new Excel().leer_ModificarCurso();
+        List<List<String>> data = new Excel().leer_ModificarSeccion();
         for (List<String> listainterna : data) {
             selenium.open("/MatriculaWeb/index.jsp");
             selenium.type("txtUsuario", "epalomino");
             selenium.type("txtClave", "eduardo");
             selenium.click("btnIniciarSesion");
             selenium.waitForPageToLoad("30000");
-            selenium.open("/MatriculaWeb/ModificarCurso.jsp");
-            selenium.click("linkModificarCurso");
+            selenium.open("/MatriculaWeb/ModificarSeccion.jsp");
+            selenium.click("linkModificarSeccionDeCurso");
             selenium.waitForPageToLoad("30000");
-            selenium.type("txtNombre", listainterna.get(0));
-            selenium.type("txtCodigo", listainterna.get(1));
-            selenium.type("txtCreditos", listainterna.get(2));
-            selenium.type("txtRequisitos", listainterna.get(3));
-            selenium.type("txtCiclo", listainterna.get(4));
-            selenium.click("btnModificarCurso");
+            selenium.click("linkModificarSeccion");
+            selenium.waitForPageToLoad("30000");
+            selenium.type("txtCodigoSeccion", listainterna.get(0));
+            selenium.type("txtProfesor", listainterna.get(1));
+            selenium.type("txtSalon", listainterna.get(2));
+            selenium.type("cbDia", listainterna.get(3));//
+            selenium.type("txtHoraInicio", listainterna.get(4));
+            selenium.type("txtHoraFin", listainterna.get(5));
+            selenium.type("cbTipoClase", listainterna.get(6));//
+            selenium.click("btnGuardarSeccion");
             selenium.waitForPageToLoad("30000");
 
-            Assert.assertEquals(selenium.getText("lblMensaje"), "El curso ha sido modificado correctamente.");
+            Assert.assertEquals(selenium.getText("mensajeConfirmacion"), "La seccion ha sido modificada correctamente.");
         }
     }
 
     @Test
     public void ModificarCurso_Invalido() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        CursoDAO cursoDAO = context.getBean(CursoDAO.class);
+        SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
+        ClaseDAO claseDAO = context.getBean(ClaseDAO.class);
 
-        int cantidadDeCursosAlInicio, cantidadDeCursosAlFinal;
+        int cantidadDeSeccionesAlInicio, cantidadDeSeccionesAlFinal;
+        int cantidadDeClasesAlInicio, cantidadDeClasesAlFinal;
 
-        List<Curso> lista;
-        lista = new ArrayList<Curso>();
-        lista = cursoDAO.list();
-        cantidadDeCursosAlInicio = lista.size();
+        List<Seccion> listaSeccions;
+        listaSeccions = new ArrayList<Seccion>();
+        listaSeccions = seccionDAO.list();
+        cantidadDeSeccionesAlInicio = listaSeccions.size();
+
+        List<Clase> listaClases;
+        listaClases = new ArrayList<Clase>();
+        listaClases = claseDAO.list();
+        cantidadDeClasesAlInicio = listaClases.size();
 
         selenium.open("/MatriculaWeb/index.jsp");
         selenium.type("txtUsuario", "epalomino");
         selenium.type("txtClave", "eduardo");
         selenium.click("btnIniciarSesion");
         selenium.waitForPageToLoad("30000");
-        selenium.open("/MatriculaWeb/ModificarCurso.jsp");
-        selenium.click("linkModificarCurso");
+        selenium.open("/MatriculaWeb/ModificarSeccion.jsp");
+        selenium.click("linkModificarSeccionDeCurso");
         selenium.waitForPageToLoad("30000");
-        selenium.type("txtNombre", "NOMBRE");
-        selenium.type("txtCodigo", "MD56");
-        selenium.type("txtCreditos", "cincuenta");
-        selenium.type("txtRequisitos", "");
-        selenium.type("txtCiclo", "Decimo");
-        selenium.click("btnModificarCurso");
+        selenium.click("linkModificarSeccion");
+        selenium.waitForPageToLoad("30000");
+        selenium.type("txtCodigoSeccion", "SEC001");
+        selenium.type("txtProfesor", "MODIFICADO");
+        selenium.type("txtSalon", "A-27");
+        selenium.type("cbDia", "Lunes");//
+        selenium.type("txtHoraInicio", "diez");
+        selenium.type("txtHoraFin", "doce");
+        selenium.type("cbTipoClase", "");//
+        selenium.click("btnGuardarSeccion");
+        selenium.waitForPageToLoad("30000");
 
         try {
             selenium.waitForPageToLoad("30000");
         } catch (com.thoughtworks.selenium.SeleniumException e) {
             if (e.getMessage().equalsIgnoreCase("Timed out after 30000ms")) {
-                cantidadDeCursosAlFinal = cursoDAO.list().size();
-                Assert.assertTrue(cantidadDeCursosAlFinal == cantidadDeCursosAlInicio);
+                cantidadDeSeccionesAlFinal = seccionDAO.list().size();
+                Assert.assertTrue(cantidadDeSeccionesAlFinal == cantidadDeSeccionesAlInicio);
+                cantidadDeClasesAlFinal = claseDAO.list().size();
+                Assert.assertTrue(cantidadDeClasesAlFinal == cantidadDeClasesAlInicio);
                 return;
             }
         }
@@ -245,29 +257,18 @@ public class SeccionTest {
     }
 
     @Test
-    public void EliminarCurso_Valido() {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        CursoDAO cursoDAO = context.getBean(CursoDAO.class);
-
-        int cantidadDeCursosAlInicio, cantidadDeCursosAlFinal;
-
-        List<Curso> lista;
-        lista = new ArrayList<Curso>();
-        lista = cursoDAO.list();
-        cantidadDeCursosAlInicio = lista.size();
-
+    public void EliminarSeccion_Valido() {
         selenium.open("/MatriculaWeb/index.jsp");
         selenium.type("txtUsuario", "epalomino");
         selenium.type("txtClave", "eduardo");
         selenium.click("btnIniciarSesion");
         selenium.waitForPageToLoad("30000");
-        selenium.open("/MatriculaWeb/EliminarCurso.jsp");
-        selenium.click("linkEliminarCurso");
+        selenium.open("/MatriculaWeb/EliminarSeccion.jsp");
+        selenium.click("linkEliminarSeccionDeCurso");
         selenium.waitForPageToLoad("30000");
-
-        cantidadDeCursosAlFinal = cursoDAO.list().size();
-        Assert.assertTrue(cantidadDeCursosAlFinal < cantidadDeCursosAlInicio);
-
+        selenium.click("lnkEliminarSeccion");
+        selenium.waitForPageToLoad("30000");
+        Assert.assertEquals(selenium.getText("mensajeConfirmacion"), "La seccion ha sido eliminada correctamente.");
     }
     */
 }
