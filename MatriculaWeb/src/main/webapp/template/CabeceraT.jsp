@@ -7,7 +7,7 @@
     <img src="assets/imagenes/logoUPC.png" width="50" height="50" alt="logoUPC"/><a href="PrincipalAdministrador.jsp" style="text-decoration: none">
         <label style="font-size: 25px">MATRICULA</label> - <label style="font-size: 20px">
         <%
-            if(userBean.privilegio.equals(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR) ){
+            if(userBean.getPrivilegio().equals(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR) ){
                 %>ADMINISTRACIÓN<%
             }
             else{
