@@ -1,19 +1,10 @@
-
 package pe.com.core.model;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-/**
- *
- * @author zcrome
- */
+import javax.persistence.*;
+
 @Entity
 @Table(name="ADMINISTRADOR")
-public class Administrador {
+public class Administrador{
     
     @Id
     @Column(name="idAdministrador")
