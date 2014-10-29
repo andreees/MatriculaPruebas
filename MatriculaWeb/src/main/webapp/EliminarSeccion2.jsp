@@ -1,9 +1,10 @@
 <%-- 
-    Document   : ModificarSeccion2
-    Created on : Oct 23, 2014, 2:28:22 PM
-    Author     : proyecto
+    Document   : EliminarSeccion2
+    Created on : 28/10/2014, 11:22:22 AM
+    Author     : Roy Taza Rojas
 --%>
 
+<%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.core.model.Clase"%>
 <%@page import="pe.com.core.dao.SeccionDAO"%>
 <%@page import="pe.com.core.dao.ClaseDAO"%>
@@ -15,7 +16,8 @@
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%    UsuarioBean usuarioBean;
+<%    
+    UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
     if (sesion == null) {
         response.sendRedirect("index.jsp");
@@ -62,8 +64,8 @@
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Modificar Seccion</h3><br>
-                <p>Seleccione la secci&oacute;n que desea modificar</p>
+                <h3 id="MensajeBienvenida">Eliminar Seccion</h3><br>
+                <p>Seleccione la secci&oacute;n que desea eliminar</p>
                 <!-- ;Table sortable -->
                 <table class="sortable">
                     <thead>
@@ -74,7 +76,7 @@
                             <td>Hora Inicio</td>
                             <td>Hora Fin</td>
                             <td>Tipo de clase</td>
-                            <th>Modificar</th>
+                            <td>Eliminar</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,7 +94,8 @@
                             <td><%= clase.getHoraInicio()%></td>
                             <td><%= clase.getHoraFin()%></td>
                             <td><%= clase.getTipoClase()%></td>
-                            <td><a href="ModificarSeccion3.jsp?idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>"><i class="icon-edit"></i></a></td>
+                            <td><a id="lnkEliminarSeccion" href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>" onclick="if (!confirm('¿Esta seguro que desea eliminar desea eliminar esta seccion?'))
+                                        return false"><i class="icon-remove"></i></a></td>
                         </tr>
                         <%
                                 }

@@ -1,7 +1,14 @@
+<%-- 
+    Document   : EliminarSeccion3
+    Created on : 28/10/2014, 11:26:46 AM
+    Author     : Roy Taza Rojas
+--%>
+
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%    UsuarioBean usuarioBean;
+<%    
+    UsuarioBean usuarioBean;
     HttpSession sesion = request.getSession(false);
     if (sesion == null) {
         response.sendRedirect("index.jsp");
@@ -17,16 +24,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Matricula - Administrador</title>
-
+        <title>Secciones - Eliminar</title>
+        <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
-        <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script>
             $(document).ready(function() {
                 $("#menu_cursos").removeClass("current");
-                $("#menu_secciones").removeClass("current");
+                $("#menu_secciones").addClass("current");
             });
         </script>
     </head>
@@ -35,9 +41,16 @@
             <%@include file="template/CabeceraT.jsp" %>
             <%@include file="template/MenuLateralT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Bienvenido Administrador</h3><br>
-                <!-- Caption -->
-                <img src="assets/imagenes/imagenAdmin.png" width="200" height="200" style="margin-left: 40%"/>
+                <h3 id="MensajeBienvenida">Eliminar Seccion</h3><br>
+                <%
+                    if (request.getParameter("mensaje") != null) {
+                        if (request.getParameter("mensaje").equalsIgnoreCase("success")) {
+                %>
+                <p id="mensajeConfirmacion" style="margin-left: 25px">La secci&oacute;n ha sido eliminada correctamente.</p>
+                <%
+                        }
+                    }
+                %>
             </div>
         </div>
     </body>

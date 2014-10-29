@@ -10,14 +10,16 @@
 <!DOCTYPE html>
 <%    
     UsuarioBean usuarioBean;
-    if (session.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+    HttpSession sesion = request.getSession(false);
+    if (sesion == null) {
+        response.sendRedirect("index.jsp");
+    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
         response.sendRedirect("index.jsp");
     } else {
         usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
         if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ALUMNO)) {
             response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        }
-    }
+        } else {
 %>
 <html>
     
@@ -41,8 +43,8 @@
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
-                <h3 id="MensajeBienvenida">Solicitud de Apertura de Curso</h3><br>
-                <div style="padding-left: 20%">
+                <h5 id="MensajeBienvenida">Solicitud de Apertura de Curso</h5><br>
+                <div style="padding-left: 10%">
                     
                     <form name="formSolicitarApertura" action="SolicitarAperturaS" method="POST">
                         <table style="width: 40%">
@@ -51,7 +53,7 @@
                                     <label for="CodigoCurso">Curso</label>
                                 </td>
                                 <td>
-                                    <select name="CodigoCurso" required="true">
+                                    <select name="CodigoCurso">
                                         <%
                                             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                                             List<Curso> listCursos = new ArrayList<Curso>();
@@ -69,15 +71,16 @@
                                 </td>
                             <tr>
                                 <td>
-                                    <label for="MotivoApertura">Codigo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="right">(A-Z,1-9)</span></label>
+                                    <label for="MotivoApertura">Motivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                 </td>
                                 <td>
-                                    <textarea name="MotivoApertura" rows="6" cols="100" required="true"></textarea>
+                                    <textarea name="MotivoApertura" rows="6" cols="100"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar Solicitud" /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar Solicitud" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Ir a Matricula" formaction="PrincipalAlumno.jsp" /></td>
                             </tr>
                         </table>
                     </form>
@@ -91,7 +94,7 @@
                     else if(Exito==2){
                     %>
                         <!-- NotSuccess -->
-                        <div class="notice warning"><i class="icon-remove icon-large"></i> La solicitud es invalida 
+                        <div class="notice warning"><i class="icon-remove icon-large"></i> La solicitud es invalida, seleccione un curso e ingrese un motivo 
                         <a href="#close" class="icon-remove"></a></div>
                     <%
                     }
@@ -104,3 +107,7 @@
         </div>
     </body>
 </html>
+<%
+        }
+    }
+%>

@@ -4,6 +4,8 @@
     Author     : Roy
 --%>
 
+<%@page import="pe.com.core.model.Matricula"%>
+<%@page import="pe.com.core.dao.MatriculaDAO"%>
 <%@page import="pe.com.core.dao.ClaseDAO"%>
 <%@page import="pe.com.core.dao.SeccionDAO"%>
 <%@page import="pe.com.core.model.Clase"%>
@@ -17,24 +19,45 @@
 <%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%    UsuarioBean usuarioBean;
+    HttpSession sesion = request.getSession(false);
+    if (sesion == null) {
+        response.sendRedirect("index.jsp");
+    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
+        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ALUMNO)) {
+            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
+        } else {
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Matricula - Alumno</title>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
     </head>
     <body>
+        <%
+            String r= request.getParameter("eee");
+            int Exito=0;
+            if(r!=null){
+                Exito=Integer.parseInt(r);
+            }
+            
+        %>
         <div id="Contenedor">
-            <!--<%@include file="template/CabeceraT.jsp" %>-->
+            <%@include file="template/CabeceraT.jsp" %>
             <div id="ContenidoCentral">
-                
-                <h6 id="MensajeBienvenida">Seleccione los cursos en los que desea matricularse</h6><br>
-                <form name="formMatricula" action="" method="POST">
+
+                <h5 id="MensajeBienvenida">Seleccione los cursos y secciones en los que desea matricularse</h5><br>
+                <form name="formMatricula" action="RegistrarMatriculaS" method="POST">
+
                 <table>
                     <% 
                     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -44,57 +67,114 @@
                     CursoDAO cDAO= context.getBean(CursoDAO.class);
                     SeccionDAO sDAO;
                     ClaseDAO ccDAO;
-
+                    MatriculaDAO mDAO=context.getBean(MatriculaDAO.class);
                     ListaDeCursos=cDAO.list();
+                    Matricula m;
+                    
+                    int i=0;
+
                     for(Curso C: ListaDeCursos)
                     {
                     %>
                     
                     <thead>
                         <tr>
-                            <th><%=C.getNombre() %></th>
+
+                            <th colspan="2"><input type="checkbox" name="ck<%=i%>" 
+                            <% 
+                                m=mDAO.getXIdCursoXIdAlumno(i+1,usuarioBean.getIdAlumno()); 
+                                if(m!=null){
+                                    %>checked<% 
+                                }    
+                                       
+                            %>
+                            
+                            ><%=C.getNombre() %> - <%=C.getCodigo()%></th>
+
                         </tr>
                     </thead>
                     <tbody>
                         
                             <%
-                            sDAO= context.getBean(SeccionDAO.class);
-                            ListaDeSecciones=sDAO.listXIdCurso(C.getIdCurso());
-                            for(Seccion S: ListaDeSecciones)
-                            {
-                            %>
-                        <tr>
-                            <td><input type="radio" name="<%=S.getCodigo()%>" value="<%=S.getIdSeccion()%>"><%=S.getCodigo()%> 
-                                (
-                                        <%
-                                        ccDAO = context.getBean(ClaseDAO.class);
-                                        ListaDeClases=ccDAO.listXIdSeccion(S.getIdSeccion());
-                                        
-                                        for(Clase CC: ListaDeClases)
-                                        {
-                                        %>
-                                        <%=CC.getDia() %> <%=CC.getHoraInicio() %> - <%=CC.getHoraFin()%> : <%=CC.getCodigo()%>
-                                        
-                                         &nbsp;&nbsp;&nbsp;
+                                sDAO = context.getBean(SeccionDAO.class);
 
-                                        <%
+                                ListaDeSecciones = sDAO.listXIdCurso(C.getIdCurso());
+
+                                for (Seccion S : ListaDeSecciones) {
+                            %>
+                            <tr>
+
+                            <td coslpan="2">&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" name="rb<%=i%>" value="<%=S.getIdSeccion()%>" 
+                                       <% 
+                                          if(m!=null){
+                                            if(m.getIdSeccion()==S.getIdSeccion()){
+                                                %>checked<% 
+                                            }
+                                          }
+                                       %>
+                                       ><%=S.getCodigo()%> 
+
+                                    (
+                                    <%
+                                        ccDAO = context.getBean(ClaseDAO.class);
+                                        ListaDeClases = ccDAO.listXIdSeccion(S.getIdSeccion());
+
+                                        for (Clase CC : ListaDeClases) {
+                                    %>
+                                    <%=CC.getDia()%> <%=CC.getHoraInicio()%> - <%=CC.getHoraFin()%> : <%=CC.getCodigo()%>
+
+                                    &nbsp;&nbsp;&nbsp;
+
+                                    <%
                                         }
-                                        
+
                                         %>
                                         <%=S.getProfesor()%>
-                                )<br>
+                                )
+                            </td>
                         </tr>
                             <%
-                            }
+                                }
                             %>
-                    </tbody>
-                    <%
+                        </tbody>
+                        <%
+                                i++;
+
+                    i++;
+
                     }
                     %>
+                    <thead>
+                        <tr>
+                            <th><input type="submit" value="Grabar Matricula" /></th><th><input type="submit" value="Solicitar Apertura de Curso" formaction="SolicitarApertura.jsp"/></th>
+                        </tr>
+                    </thead>
                 </table>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Grabar Matricula" />
+                <%if(Exito==1){
+                    %>
+                        <!-- Success -->
+                        <div class="notice success"><i class="icon-ok icon-large"></i>Se registró su Matricula correctamente 
+                        <a href="#close" class="icon-remove"></a></div>
+                    <%
+                    }
+                    else if(Exito==2){
+                    %>
+                        <!-- NotSuccess -->
+                        <div class="notice warning"><i class="icon-remove icon-large"></i> No se ha grabado la matricula 
+                        <a href="#close" class="icon-remove"></a></div>
+                    <%
+                    }
+                    else {
+                    
+                    }
+                    %>
             </form>
             </div>
         </div>
     </body>
 </html>
+<%
+        }
+    }
+%>
