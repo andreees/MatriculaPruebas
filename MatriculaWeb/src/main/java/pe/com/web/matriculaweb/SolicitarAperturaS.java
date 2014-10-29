@@ -39,8 +39,7 @@ public class SolicitarAperturaS extends HttpServlet {
                     
                     
                     response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                }
-                else{
+                }else{
                 
                     SolicitudDAO solicitudDAO = context.getBean(SolicitudDAO.class);
                 
@@ -58,9 +57,7 @@ public class SolicitarAperturaS extends HttpServlet {
                     
                         solicitudDAO.save(solicitud);
                    
-                    }
-                    catch(Exception e)
-                    {
+                    }catch(Exception e){
                         response.sendRedirect("SolicitarApertura.jsp?eee="+2);
                         LOGGER.error("Sorry, something wrong!", e);
                         

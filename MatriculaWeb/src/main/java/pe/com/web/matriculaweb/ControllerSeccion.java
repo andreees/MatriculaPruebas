@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pe.com.core.dao.ClaseDAO;
 import pe.com.core.dao.SeccionDAO;
@@ -25,7 +26,7 @@ import pe.com.web.matriculaweb.util.ConstantesWeb;
  */
 @WebServlet(name = "ControllerSeccion", urlPatterns = {"/ControllerSeccion"})
 public class ControllerSeccion extends HttpServlet {
-
+    private final static Logger LOGGER = Logger.getLogger(ControllerSeccion.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,6 +50,7 @@ public class ControllerSeccion extends HttpServlet {
             case ConstantesWeb.ELIMINAR_SECCION:
                 this.EliminarSeccion(request, response);
                 break;
+            default:break;
         }
     }
 
@@ -78,6 +80,7 @@ public class ControllerSeccion extends HttpServlet {
             mensaje = "success";
             response.sendRedirect(url + "?mensaje=" + mensaje);
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
             url = "error.jsp";
             mensaje = e.getMessage();
             response.sendRedirect(url + "?mensaje=" + mensaje);
@@ -113,6 +116,7 @@ public class ControllerSeccion extends HttpServlet {
             mensaje = "success";
             response.sendRedirect(url + "?mensaje=" + mensaje);
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
             url = "error.jsp";
             mensaje = e.getMessage();
             response.sendRedirect(url + "?mensaje=" + mensaje);
@@ -141,6 +145,7 @@ public class ControllerSeccion extends HttpServlet {
             mensaje = "success";
             response.sendRedirect(url + "?mensaje=" + mensaje);
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
             url = "error.jsp";
             mensaje = e.getMessage();
             response.sendRedirect(url + "?mensaje=" + mensaje);

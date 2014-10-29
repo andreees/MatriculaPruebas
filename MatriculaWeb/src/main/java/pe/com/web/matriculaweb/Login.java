@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pe.com.web.matriculaweb;
 
 import java.io.IOException;
@@ -13,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import pe.com.core.dao.AdministradorDAO;
 import pe.com.core.dao.AlumnoDAO;
@@ -30,7 +26,7 @@ import pe.com.web.matriculaweb.util.Encryptor;
  */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
-
+    private final static Logger LOGGER = Logger.getLogger(Login.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -110,6 +106,7 @@ public class Login extends HttpServlet {
             // Redireccionar
             response.sendRedirect(url + "?mensaje=" + mensaje);
         } catch (Exception e) {
+            LOGGER.error("Sorry, something wrong!", e);
             url = "error.jsp";
             mensaje = e.getMessage();
             response.sendRedirect(url + "?mensaje=" + mensaje);
