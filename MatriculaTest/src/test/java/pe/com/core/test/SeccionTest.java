@@ -174,7 +174,7 @@ public class SeccionTest {
 
     }hasta aca*/
 
-    
+    /*
     @Test
     public void ModificarCurso_Valido() {
 
