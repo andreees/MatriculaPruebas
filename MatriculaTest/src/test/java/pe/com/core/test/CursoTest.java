@@ -15,7 +15,8 @@ import pe.com.core.model.Curso;
 
 @Test
 public class CursoTest {
-    /*private Selenium selenium;
+    /*
+    private Selenium selenium;
     
     @BeforeClass
     public void inicioClase() throws Exception{
