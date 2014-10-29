@@ -49,6 +49,7 @@ public class SolicitarAperturaS extends HttpServlet {
                     UsuarioBean usuario=(UsuarioBean)sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
                     
                     solicitud.setIdAlumno(usuario.getIdAlumno());
+                    solicitud.setIdCurso(Integer.parseInt(sCodigoCurso));
                     solicitud.setMotivo(request.getParameter("MotivoApertura"));
                     
                     try{
