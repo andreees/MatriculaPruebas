@@ -70,8 +70,7 @@ public class RegistrarMatriculaS extends HttpServlet{
                                 mDAO.update(m);
                                 //Registro de Matricula Modificado
                             }
-                        }
-                        else{//NO existe registro para Curso y Alumno
+                        }else{//NO existe registro para Curso y Alumno
                             m=new Matricula();
                             m.setHoramatricula(dt.getHourOfDay());
                             m.setFechamatricula(dt.toDate());
@@ -84,8 +83,7 @@ public class RegistrarMatriculaS extends HttpServlet{
                         }
                         
                     }
-                }
-                else{//No check curso -- Eliminar
+                }else{//No check curso -- Eliminar
                     Curso c=cDAO.get(i+1);
                     m=mDAO.getXIdCursoXIdAlumno(c.getIdCurso(),usuario.getIdAlumno());
                     if(m!=null){//si alumno está registrado en curso
@@ -96,16 +94,14 @@ public class RegistrarMatriculaS extends HttpServlet{
                 }
             }
         
-        }
-        catch(Exception e){
-            response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
+        }catch(Exception e){
             LOGGER.error("Sorry, something wrong!", e);
+            response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
         }
         
         if(modificado){
             response.sendRedirect("PrincipalAlumno.jsp?eee="+1);
-        }
-        else{
+        }else{
             response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
         }
         
