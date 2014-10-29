@@ -42,19 +42,19 @@ public class ControllerSeccion extends HttpServlet {
 
         switch (accion) {
             case ConstantesWeb.CREAR_SECCION:
-                this.CrearSeccion(request, response);
+                this.crearSeccion(request, response);
                 break;
             case ConstantesWeb.MODIFICAR_SECCION:
-                this.ModificarSeccion(request, response);
+                this.modificarSeccion(request, response);
                 break;
             case ConstantesWeb.ELIMINAR_SECCION:
-                this.EliminarSeccion(request, response);
+                this.eliminarSeccion(request, response);
                 break;
             default:break;
         }
     }
 
-    protected void CrearSeccion(HttpServletRequest request, HttpServletResponse response)
+    protected void crearSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
         String mensaje = "";
@@ -87,7 +87,7 @@ public class ControllerSeccion extends HttpServlet {
         }
     }
 
-    protected void ModificarSeccion(HttpServletRequest request, HttpServletResponse response)
+    protected void modificarSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
         String mensaje = "";
@@ -123,7 +123,7 @@ public class ControllerSeccion extends HttpServlet {
         }
     }
     
-    protected void EliminarSeccion(HttpServletRequest request, HttpServletResponse response)
+    protected void eliminarSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
         String mensaje = "";

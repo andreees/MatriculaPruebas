@@ -17,6 +17,9 @@ public final class Encryptor {
 
     private static MessageDigest digester;
     private final static Logger LOGGER = Logger.getLogger(Encryptor.class);
+
+    private Encryptor() {
+    }
     
     static {
         try {
@@ -33,7 +36,7 @@ public final class Encryptor {
 
         digester.update(str.getBytes());
         byte[] hash = digester.digest();
-        StringBuffer hexString = new StringBuffer();
+        StringBuilder hexString = new StringBuilder();
         for (int i = 0; i < hash.length; i++) {
             if ((0xff & hash[i]) < 0x10) {
                 hexString.append("0" + Integer.toHexString(0xFF & hash[i]));

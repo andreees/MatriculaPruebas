@@ -17,8 +17,9 @@ import pe.com.web.matriculaweb.util.ConstantesWeb;
 
 @WebServlet(name = "SolicitarAperturaS", urlPatterns = {"/SolicitarAperturaS"})
 public class SolicitarAperturaS extends HttpServlet {
-    
+
     private final static Logger LOGGER = Logger.getLogger(SolicitarAperturaS.class);
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,48 +31,43 @@ public class SolicitarAperturaS extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
-                ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		
-                String sMotivoApertura=request.getParameter("MotivoApertura");
-                String sCodigoCurso=request.getParameter("CodigoCurso");
-                if(sMotivoApertura.trim().equals("") || sCodigoCurso.trim().equals("")){
-                    
-                    
-                    response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                }else{
-                
-                    SolicitudDAO solicitudDAO = context.getBean(SolicitudDAO.class);
-                
-                    Solicitud solicitud=new Solicitud();
-                    
-                    HttpSession sesion=request.getSession();
-                    
-                    UsuarioBean usuario=(UsuarioBean)sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
-                    
-                    solicitud.setIdAlumno(usuario.getIdAlumno());
-                    solicitud.setIdCurso(Integer.parseInt(sCodigoCurso));
-                    solicitud.setMotivo(request.getParameter("MotivoApertura"));
-                    
-                    try{
-                    
-                        solicitudDAO.save(solicitud);
-                   
-                    }catch(Exception e){
-                        LOGGER.error("Sorry, something wrong!", e);
-                        response.sendRedirect("SolicitarApertura.jsp?eee="+2);
-                        
-                        
-                    }
-                    
-                    response.sendRedirect("SolicitarApertura.jsp?eee="+1);
-                    
-                }
-                
-                
-                
+
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+
+        String sMotivoApertura = request.getParameter("MotivoApertura");
+        String sCodigoCurso = request.getParameter("CodigoCurso");
+        if ("".equals(sMotivoApertura) || "".equals(sCodigoCurso)) {
+
+            response.sendRedirect("SolicitarApertura.jsp?eee=" + 2);
+        } else {
+
+            SolicitudDAO solicitudDAO = context.getBean(SolicitudDAO.class);
+
+            Solicitud solicitud = new Solicitud();
+
+            HttpSession sesion = request.getSession();
+
+            UsuarioBean usuario = (UsuarioBean) sesion.getAttribute(ConstantesWeb.USUARIO_INICIO);
+
+            solicitud.setIdAlumno(usuario.getIdAlumno());
+            solicitud.setIdCurso(Integer.parseInt(sCodigoCurso));
+            solicitud.setMotivo(request.getParameter("MotivoApertura"));
+
+            try {
+
+                solicitudDAO.save(solicitud);
+
+            } catch (Exception e) {
+                LOGGER.error("Sorry, something wrong!", e);
+                response.sendRedirect("SolicitarApertura.jsp?eee=" + 2);
+
+            }
+
+            response.sendRedirect("SolicitarApertura.jsp?eee=" + 1);
+
         }
-        
+
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
