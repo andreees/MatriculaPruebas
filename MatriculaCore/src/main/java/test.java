@@ -1,6 +1,10 @@
 
 
+
+
+import java.util.ArrayList;
 import java.util.List;
+import org.joda.time.DateTime;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,7 +36,7 @@ public class test {
 	public static void main(String[] args) {
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		
+		/*
                 MatriculaDAO dao = context.getBean(MatriculaDAO.class);
                 
                 
@@ -45,8 +49,10 @@ public class test {
                 
                 dao.save(matricula);
                 
+                */
                 
-                
+          
+          
                 
                 
                 
