@@ -11,13 +11,13 @@ package pe.com.web.matriculaweb.bean;
  * @author Roy
  */
 public class UsuarioBean {
-    public int idUsuario;
-    public String privilegio;
-    public int idAlumno;
-    public int idAdministrador;
-    public String usuarioLogin;
-    public String nombres;
-    public String apellidos;
+    private int idUsuario;
+    private String privilegio;
+    private int idAlumno;
+    private int idAdministrador;
+    private String usuarioLogin;
+    private String nombres;
+    private String apellidos;
 
     public UsuarioBean() {
     }
