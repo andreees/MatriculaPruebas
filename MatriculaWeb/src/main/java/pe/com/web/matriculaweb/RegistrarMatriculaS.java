@@ -101,10 +101,11 @@ public class RegistrarMatriculaS extends HttpServlet{
         
         if(modificado){
             response.sendRedirect("PrincipalAlumno.jsp?eee="+1);
+            LOGGER.info("Matricula registrada please.");
         }else{
             response.sendRedirect("PrincipalAlumno.jsp?eee="+2);
+            LOGGER.info("Matricula registrada.");
         }
-        
     }
     
     

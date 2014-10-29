@@ -126,7 +126,7 @@ public class ControllerSeccion extends HttpServlet {
     protected void eliminarSeccion(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
-        String mensaje = "";
+        String mennsaje = "";
         try {
             ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
             SeccionDAO seccionDAO = context.getBean(SeccionDAO.class);
@@ -142,13 +142,13 @@ public class ControllerSeccion extends HttpServlet {
             seccionDAO.delete(seccion);
 
             url = "EliminarSeccion3.jsp";
-            mensaje = "success";
-            response.sendRedirect(url + "?mensaje=" + mensaje);
-        } catch (Exception e) {
-            LOGGER.error("Sorry, something wrong!", e);
+            mennsaje = "success";
+            response.sendRedirect(url + "?mensaje=" + mennsaje);
+        } catch (Exception eq) {
+            LOGGER.error("Sorry, something wrong!", eq);
             url = "error.jsp";
-            mensaje = e.getMessage();
-            response.sendRedirect(url + "?mensaje=" + mensaje);
+            mennsaje = eq.getMessage();
+            response.sendRedirect(url + "?mensaje=" + mennsaje);
         }
     }
 

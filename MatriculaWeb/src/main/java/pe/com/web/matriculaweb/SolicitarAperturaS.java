@@ -64,7 +64,6 @@ public class SolicitarAperturaS extends HttpServlet {
             }
 
             response.sendRedirect("SolicitarApertura.jsp?eee=" + 1);
-
         }
 
     }

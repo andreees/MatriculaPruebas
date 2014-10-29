@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 import pe.com.web.matriculaweb.util.ConstantesWeb;
 
 /**
@@ -22,6 +23,7 @@ import pe.com.web.matriculaweb.util.ConstantesWeb;
 @WebServlet(name = "Logout", urlPatterns = {"/Logout"})
 public class Logout extends HttpServlet {
 
+    private final static Logger LOGGER = Logger.getLogger(SolicitarAperturaS.class);
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,6 +43,8 @@ public class Logout extends HttpServlet {
             sesion.invalidate();
         }
         response.sendRedirect("index.jsp");
+        LOGGER.info("SESION CERRADA");
+        LOGGER.isTraceEnabled();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
