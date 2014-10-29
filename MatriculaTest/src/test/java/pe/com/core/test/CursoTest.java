@@ -16,7 +16,7 @@ import pe.com.core.model.Curso;
 @Test
 public class CursoTest {
     private Selenium selenium;
-    /*
+    
     @BeforeClass
     public void inicioClase() throws Exception{
         selenium = new DefaultSelenium("localhost", 4441, "firefox", 
@@ -204,7 +204,7 @@ public class CursoTest {
         }
         Assert.fail();
     }
-    */
+    
 //    @Test(priority = 6)
 //    public void EliminarCurso_Valido(){
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");

@@ -15,9 +15,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pe.com.core.dao.ClaseDAO;
-import pe.com.core.excel.Excel;
+import pe.com.core.dao.CursoDAO;
 import pe.com.core.dao.SeccionDAO;
+import pe.com.core.excel.Excel;
 import pe.com.core.model.Clase;
+import pe.com.core.model.Curso;
 import pe.com.core.model.Seccion;
 
 /**
@@ -28,7 +30,7 @@ import pe.com.core.model.Seccion;
 public class SeccionTest {
 
     private Selenium selenium;
-/*
+
     @BeforeClass
     public void inicioClase() throws Exception {
         selenium = new DefaultSelenium("localhost", 4441, "firefox",
@@ -265,5 +267,5 @@ public class SeccionTest {
         Assert.assertTrue(cantidadDeCursosAlFinal < cantidadDeCursosAlInicio);
 
     }
-    */
+    
 }
