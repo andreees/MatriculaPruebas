@@ -44,4 +44,5 @@ Temporary Items
 .apdisk
 /MatriculaWeb/target/
 /MatriculaCore/target/
+/MatriculaTest/target/
 MatriculaCore/src/main/resources/spring.xml

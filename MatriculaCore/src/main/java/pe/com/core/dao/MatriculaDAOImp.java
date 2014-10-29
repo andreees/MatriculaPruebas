@@ -64,10 +64,12 @@ public class MatriculaDAOImp implements MatriculaDAO{
         } catch (Exception e) {
             LOGGER.error("Sorry, something wrong!", e);
         }
-        if(lista.size()>0)
+        if(!lista.isEmpty()){
             return lista.get(0);
-        else
+        }else{
             return null;
+        }
+            
     }
     
     public boolean update(Matricula matricula) {

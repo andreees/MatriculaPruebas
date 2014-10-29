@@ -1,16 +1,7 @@
-
 package pe.com.core.model;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-/**
- *
- * @author zcrome
- */
+import javax.persistence.*;
+
 @Entity
 @Table(name = "SECCION")
 public class Seccion {

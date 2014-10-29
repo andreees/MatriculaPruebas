@@ -28,7 +28,7 @@ import pe.com.core.model.Seccion;
 public class SeccionTest {
 /*
     private Selenium selenium;
-
+/*
     @BeforeClass
     public void inicioClase() throws Exception {
         selenium = new DefaultSelenium("localhost", 4441, "firefox",
@@ -174,7 +174,7 @@ public class SeccionTest {
 
     }hasta aca*/
 
-    /*
+    
     @Test
     public void ModificarCurso_Valido() {
 
