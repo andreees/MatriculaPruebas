@@ -46,7 +46,7 @@
                     if (request.getParameter("mensaje") != null) {
                         if (request.getParameter("mensaje").equalsIgnoreCase("success")) {
                 %>
-                <p id="mensajeConfirmacion" style="margin-left: 25px">La secci&oacute;n ha sido eliminada correctamente.</p>
+                <p style="margin-left: 25px"><label id="mensajeConfirmacion">La seccion ha sido eliminada correctamente.</label></p>
                 <%
                         }
                     }

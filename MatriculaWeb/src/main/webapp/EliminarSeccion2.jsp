@@ -94,8 +94,8 @@
                             <td><%= clase.getHoraInicio()%></td>
                             <td><%= clase.getHoraFin()%></td>
                             <td><%= clase.getTipoClase()%></td>
-                            <td><a id="lnkEliminarSeccion" href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>" onclick="if (!confirm('¿Esta seguro que desea eliminar desea eliminar esta seccion?'))
-                                        return false"><i class="icon-remove"></i></a></td>
+                            <!--td><a id="lnkEliminarSeccion" href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>" onclick="if (!confirm('¿Esta seguro que desea eliminar desea eliminar esta seccion?'))return false"><i class="icon-remove"></i></a></td-->
+                            <td><a id="lnkEliminarSeccion" href="ControllerSeccion?action=<%= ConstantesWeb.ELIMINAR_SECCION%>&idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>"><i class="icon-remove"></i></a></td>
                         </tr>
                         <%
                                 }

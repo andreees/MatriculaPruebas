@@ -74,7 +74,7 @@
                             <td><%= curso.getNombre()%></td>
                             <td><%= curso.getRequisitos()%></td>
                             <td><%= curso.getCiclo()%></td>
-                            <td><a href="EliminarSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-check"></i></a></td>
+                            <td><a id="linkEliminarSeccionDeCurso" href="EliminarSeccion2.jsp?idCurso=<%= curso.getIdCurso()%>"><i class="icon-check"></i></a></td>
                         </tr>                    
                         <%
                             }

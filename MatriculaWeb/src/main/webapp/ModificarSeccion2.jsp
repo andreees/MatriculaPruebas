@@ -92,7 +92,7 @@
                             <td><%= clase.getHoraInicio()%></td>
                             <td><%= clase.getHoraFin()%></td>
                             <td><%= clase.getTipoClase()%></td>
-                            <td><a href="ModificarSeccion3.jsp?idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>"><i class="icon-edit"></i></a></td>
+                            <td><a id="linkModificarSeccion" href="ModificarSeccion3.jsp?idCurso=<%= curso.getIdCurso()%>&idSeccion=<%= seccion.getIdSeccion()%>&idClase=<%= clase.getIdClase()%>"><i class="icon-edit"></i></a></td>
                         </tr>
                         <%
                                 }
