@@ -30,6 +30,8 @@ import pe.com.core.model.Seccion;
 public class SeccionTest {
 /*
     private Selenium selenium;
+/*
+    private Selenium selenium;
 
     @BeforeClass
     public void inicioClase() throws Exception {
