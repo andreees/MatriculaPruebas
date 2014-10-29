@@ -147,7 +147,7 @@
                     %>
                     <thead>
                         <tr>
-                            <th><input type="submit" value="Grabar Matricula" /></th><th><input type="submit" value="Solicitar Apertura de Curso" formaction="SolicitarApertura.jsp"/></th>
+                            <th><input type="submit" name="btnGrabarMatricula" value="Grabar Matricula" /></th><th><input type="submit" name="btnSolicitarApertura" value="Solicitar Apertura de Curso" formaction="SolicitarApertura.jsp"/></th>
                         </tr>
                     </thead>
                 </table>
