@@ -1,3 +1,4 @@
+
 package pe.com.core.test;
 
 import com.thoughtworks.selenium.DefaultSelenium;
@@ -233,3 +234,4 @@ public class CursoTest {
 //    }
     
 }
+

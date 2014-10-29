@@ -269,5 +269,5 @@ public class SeccionTest {
         Assert.assertTrue(cantidadDeCursosAlFinal < cantidadDeCursosAlInicio);
 
     }
-    
+    */
 }
