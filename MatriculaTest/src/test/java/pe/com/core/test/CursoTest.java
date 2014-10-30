@@ -16,7 +16,7 @@ import pe.com.core.model.Curso;
 
 @Test
 public class CursoTest {
-    /*
+    
     private Selenium selenium;
     
     @BeforeClass
@@ -62,7 +62,7 @@ public class CursoTest {
         List<Curso> lista;
         lista=cursoDAO.list();
         
-        Assert.assertTrue(lista!=null && lista.size()==0);
+        Assert.assertTrue(lista!=null && lista.isEmpty());
         
     }
     
@@ -205,7 +205,7 @@ public class CursoTest {
             }
         }
         Assert.fail();
-    }hasta aca*/
+    }
     
 //    @Test(priority = 6)
 //    public void EliminarCurso_Valido(){
