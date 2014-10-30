@@ -39,21 +39,17 @@ public class Alumno {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
+    
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    
+    public int getIdUsuario() {
+        return idUsuario;
     }
     
     @Override
@@ -61,4 +57,7 @@ public class Alumno {
         return "idAlumno="+idAlumno+", nombres="+nombres+", apellidos="+apellidos+", idusuario="+idUsuario;
     }
     
+    public String getApellidos() {
+        return apellidos;
+    }
 }
