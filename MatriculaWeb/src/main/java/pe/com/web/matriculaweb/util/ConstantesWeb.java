@@ -12,12 +12,9 @@ package pe.com.web.matriculaweb.util;
  */
 public final class ConstantesWeb {
     
-    public static final String USUARIO_INICIO = "UsuarioInicio";
-    public static final String PRIVILEGIO_ADMINISTRADOR = "Administrador";
-    public static final String PRIVILEGIO_ALUMNO = "Alumno";
-    public static final String CREAR_SECCION = "crearSeccion";
-    public static final String MODIFICAR_SECCION = "modificarSeccion";
-    public static final String ELIMINAR_SECCION = "eliminarSeccion";
+    public static final String CREAR_CURSO = "crearCurso";
+    public static final String MODIFICAR_CURSO = "modificarCurso";
+    public static final String ELIMINAR_CURSO = "eliminarCurso";
 
     private ConstantesWeb() {
     }

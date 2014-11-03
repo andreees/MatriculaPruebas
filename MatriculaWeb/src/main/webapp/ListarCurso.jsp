@@ -5,33 +5,22 @@
 <%@page import="pe.com.core.dao.*"%>
 <%@page import="pe.com.core.model.*"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
-<%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    
-    UsuarioBean usuarioBean;
-    HttpSession sesion = request.getSession(false);
-    if (sesion == null) {
-        response.sendRedirect("index.jsp");
-    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
-        response.sendRedirect("index.jsp");
-    } else {
-        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
-        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR)) {
-            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        } else {
-%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cursos - Listar</title>
+        <link rel="icon" type="image/png" href="assets/imagenes/iconoMF.png" />
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
         <script>
             $(document).ready(function() {
-                $("#menu_cursos").addClass("current");
-                $("#menu_secciones").removeClass("current");
+                $("#listarCurso").addClass("current");
+                $("#crearCurso").removeClass("current");
+                $("#modificarCurso").removeClass("current");
+                $("#eliminarCurso").removeClass("current");
             });
         </script>
     </head>
@@ -52,11 +41,10 @@
                     </thead>
                     <%
                         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		        List<Curso> ListaDeCursos = new ArrayList<Curso>();
-                        CursoDAO cDAO= context.getBean(CursoDAO.class);
-                        ListaDeCursos=cDAO.list();
-                        for(Curso C: ListaDeCursos)
-                        {
+                        List<Curso> ListaDeCursos = new ArrayList<Curso>();
+                        CursoDAO cDAO = context.getBean(CursoDAO.class);
+                        ListaDeCursos = cDAO.list();
+                        for (Curso C : ListaDeCursos) {
                     %>
                     <tbody>
                         <tr>
@@ -64,16 +52,14 @@
                             <td><%= C.getNombre()%></td>
                             <td><%= C.getCreditos()%></td>
                         </tr>                    
-                    <%
-                        }
-                    %>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
+            <label style="text-align: center;color: transparent">-----***PRUEBAS DE SOFTWARE***-----</label>
+            <%@include file="template/footer.jsp" %>
         </div>
     </body>
 </html>
-<%
-        }
-    }
-%>

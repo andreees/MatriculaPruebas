@@ -1,37 +1,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="pe.com.web.matriculaweb.util.ConstantesWeb"%>
-<%@page import="pe.com.web.matriculaweb.bean.UsuarioBean"%>
-<%    UsuarioBean usuarioBean;
-    HttpSession sesion = request.getSession(false);
-    if (sesion == null) {
-        response.sendRedirect("index.jsp");
-    } else if (sesion.getAttribute(ConstantesWeb.USUARIO_INICIO) == null) {
-        response.sendRedirect("index.jsp");
-    } else {
-        usuarioBean = (UsuarioBean) session.getAttribute(ConstantesWeb.USUARIO_INICIO);
-        if (!usuarioBean.getPrivilegio().equalsIgnoreCase(ConstantesWeb.PRIVILEGIO_ADMINISTRADOR)) {
-            response.sendRedirect("error.jsp?mensaje=No tienes privilegios de acceso");
-        } else {
-%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cursos - Crear</title>
+        <link rel="icon" type="image/png" href="assets/imagenes/iconoMF.png" />
         <link rel="stylesheet" href="assets/css/Basico.css" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="assets/js/kickstart.js"></script> <!-- KICKSTART -->
         <link rel="stylesheet" href="assets/css/kickstart.css" media="all" /> <!-- KICKSTART -->
         <script>
             $(document).ready(function() {
-                $("#menu_cursos").addClass("current");
-                $("#menu_secciones").removeClass("current");
+                $("#listarCurso").removeClass("current");
+                $("#crearCurso").addClass("current");
+                $("#modificarCurso").removeClass("current");
+                $("#eliminarCurso").removeClass("current");
             });
         </script>
     </head>
     <body>
-        <%
-            boolean Exito = Boolean.parseBoolean(request.getParameter("eee"));
+        <%            boolean Exito = Boolean.parseBoolean(request.getParameter("eee"));
         %>
         <div id="Contenedor">
             <%@include file="template/CabeceraT.jsp" %>
@@ -39,8 +28,8 @@
             <div id="ContenidoCentral">
                 <h3 id="MensajeBienvenida">Crear Curso</h3><br>
                 <div style="padding-left: 20%">
-
-                    <form name="formCrearCurso" action="CrearCursoS" method="POST">
+                    <form name="frmCrearCurso" action="Controller" method="post">
+                        <input type="hidden" name="action" value="<%= ConstantesWeb.CREAR_CURSO%>">
                         <table style="width: 60%">
                             <tr>
                                 <td>
@@ -88,7 +77,8 @@
                             </tr>
                         </table>
                     </form>
-                    <%if (Exito) {
+                    <%
+                        if (Exito) {
                     %>
                     <!-- Success -->
                     <div class="notice success"><i class="icon-ok icon-large"></i> Curso Creado Correctamente! 
@@ -98,10 +88,8 @@
                         %>
                 </div>
             </div>
+            <label style="text-align: center;color: transparent">-----***PRUEBAS DE SOFTWARE***-----</label>
+            <%@include file="template/footer.jsp" %>
         </div>
     </body>
 </html>
-<%
-        }
-    }
-%>

@@ -13,6 +13,7 @@ body{
     //background-color:#E5BC7A;
     height:30%;
     margin-top: 10px;
+    text-align: center;
 }
 /*#menu{
         height:10%;
@@ -25,6 +26,7 @@ body{
     width:20%;
 }
 #ContenidoCentral{
+    min-height: 500px;
     height:50%;
     //background-color:#DAF7E2;
     float:right;

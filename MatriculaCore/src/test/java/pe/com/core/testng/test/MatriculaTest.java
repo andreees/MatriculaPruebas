@@ -15,14 +15,15 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pe.com.core.dao.MatriculaDAO;
-import pe.com.core.model.Matricula;
+//import pe.com.core.dao.MatriculaDAO;
+//import pe.com.core.model.Matricula;
 
 /**
  *
  * @author Cesar
  */
 public class MatriculaTest {
+    /*
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
     private MatriculaDAO matriculaDAO;
 
@@ -97,4 +98,5 @@ public class MatriculaTest {
              Assert.fail("Fallo "+e.getMessage());
         }
      }
+    */
 }
